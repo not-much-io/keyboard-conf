@@ -219,7 +219,7 @@
                                     {
                                         "key_code": "left_arrow",
                                         "modifiers": [
-                                            "right_gui"
+                                            "right_command"
                                         ]
                                     }
                                 ]
@@ -251,7 +251,7 @@
                                     {
                                         "key_code": "right_arrow",
                                         "modifiers": [
-                                            "right_gui"
+                                            "right_command"
                                         ]
                                     }
                                 ]
@@ -284,7 +284,7 @@
                                     {
                                         "key_code": "up_arrow",
                                         "modifiers": [
-                                            "right_gui"
+                                            "right_command"
                                         ]
                                     }
                                 ]
@@ -317,7 +317,7 @@
                                     {
                                         "key_code": "down_arrow",
                                         "modifiers": [
-                                            "right_gui"
+                                            "right_command"
                                         ]
                                     }
                                 ]
@@ -349,8 +349,8 @@
                                     {
                                         "key_code": "x",
                                         "modifiers": [
-                                            "right_gui",
-                                            "right_alt",
+                                            "right_command",
+                                            "right_option",
                                             "right_control"
                                         ]
                                     }
@@ -383,7 +383,7 @@
                                     {
                                         "key_code": "v",
                                         "modifiers": [
-                                            "right_gui"
+                                            "right_command"
                                         ]
                                     }
                                 ]
@@ -416,7 +416,7 @@
                                     {
                                         "key_code": "z",
                                         "modifiers": [
-                                            "right_gui"
+                                            "right_command"
                                         ]
                                     }
                                 ]
@@ -448,7 +448,7 @@
                                     {
                                         "key_code": "z",
                                         "modifiers": [
-                                            "right_gui",
+                                            "right_command",
                                             "left_shift"
                                         ]
                                     }
@@ -481,8 +481,8 @@
                                     {
                                         "key_code": "f",
                                         "modifiers": [
-                                            "right_gui",
-                                            "right_alt",
+                                            "right_command",
+                                            "right_option",
                                             "right_control"
                                         ]
                                     }
@@ -515,8 +515,8 @@
                                     {
                                         "key_code": "b",
                                         "modifiers": [
-                                            "right_gui",
-                                            "right_alt",
+                                            "right_command",
+                                            "right_option",
                                             "right_control"
                                         ]
                                     }
@@ -543,7 +543,7 @@
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
-                                            "right_gui"
+                                            "right_command"
                                         ]
                                     },
                                     "key_code": "b"
@@ -552,7 +552,7 @@
                                     {
                                         "key_code": "left_arrow",
                                         "modifiers": [
-                                            "right_alt"
+                                            "right_option"
                                         ]
                                     }
                                 ]
@@ -575,7 +575,7 @@
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
-                                            "right_gui"
+                                            "right_command"
                                         ]
                                     },
                                     "key_code": "f"
@@ -584,7 +584,7 @@
                                     {
                                         "key_code": "right_arrow",
                                         "modifiers": [
-                                            "right_alt"
+                                            "right_option"
                                         ]
                                     }
                                 ]
@@ -607,7 +607,7 @@
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
-                                            "right_gui"
+                                            "right_command"
                                         ]
                                     },
                                     "key_code": "delete_or_backspace"
@@ -616,7 +616,7 @@
                                     {
                                         "key_code": "delete_or_backspace",
                                         "modifiers": [
-                                            "right_alt"
+                                            "right_option"
                                         ]
                                     }
                                 ]
@@ -639,7 +639,7 @@
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
-                                            "right_gui"
+                                            "right_command"
                                         ]
                                     },
                                     "key_code": "d"
@@ -648,7 +648,7 @@
                                     {
                                         "key_code": "delete_or_backspace",
                                         "modifiers": [
-                                            "right_alt",
+                                            "right_option",
                                             "fn"
                                         ]
                                     }
@@ -724,8 +724,8 @@
                                     {
                                         "key_code": "a",
                                         "modifiers": [
-                                            "right_gui",
-                                            "right_alt",
+                                            "right_command",
+                                            "right_option",
                                             "right_control"
                                         ]
                                     },
@@ -765,7 +765,7 @@
                                     {
                                         "key_code": "s",
                                         "modifiers": [
-                                            "right_gui"
+                                            "right_command"
                                         ]
                                     },
                                     // func clearEmacsMode
