@@ -60,6 +60,13 @@
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -81,6 +88,13 @@
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -102,6 +116,13 @@
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -123,6 +144,13 @@
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -144,6 +172,13 @@
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -165,6 +200,13 @@
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -189,6 +231,13 @@
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -213,6 +262,13 @@
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -238,6 +294,13 @@
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -258,13 +321,19 @@
                             }
                         ]
                     },
-                    // Depends on MacOS Cut rebind
                     {
                         "description": "emacs wipe",
                         "manipulators": [
                             {
                                 "type": "basic",
                                 "from": {
+                                    "conditions": [
+                                        {
+                                            "type": "variable_if",
+                                            "name": "emacs_mode",
+                                            "value": "none"
+                                        }
+                                    ],
                                     "modifiers": {
                                         "mandatory": [
                                             "right_control"
@@ -290,6 +359,13 @@
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -314,6 +390,13 @@
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -359,12 +442,18 @@
                             }
                         ]
                     },
-                    // Depends on MacOS Find rebind
                     {
                         "description": "emacs search",
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -386,12 +475,18 @@
                             }
                         ]
                     },
-                    // Depends on MacOS Back rebind
                     {
                         "description": "emacs navigate back",
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -421,6 +516,13 @@
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -445,6 +547,13 @@
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -469,6 +578,13 @@
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -493,6 +609,13 @@
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -517,7 +640,7 @@
                     // C-x {key} : general extend commands
                     //
                     {
-                        "description": "emacs mode switch : general switch",
+                        "description": "emacs mode switch : general_extend",
                         "manipulators": [
                             {
                                 "type": "basic",
@@ -527,7 +650,7 @@
                                             "right_control"
                                         ]
                                     },
-                                    "key_code": "c"
+                                    "key_code": "x"
                                 },
                                 "to": [
                                     {
@@ -540,7 +663,6 @@
                             }
                         ]
                     },
-                    // Depends on MacOS Select All rebind
                     {
                         "description": "emacs select all",
                         "manipulators": [
@@ -563,6 +685,43 @@
                                             "right_gui",
                                             "right_alt",
                                             "right_control"
+                                        ]
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "emacs_mode",
+                                            "value": "none"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "emacs save",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "general_extend"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "s",
+                                        "modifiers": [
+                                            "right_gui"
                                         ]
                                     },
                                     {
