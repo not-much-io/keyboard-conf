@@ -330,14 +330,6 @@
                             {
                                 "type": "basic",
                                 "from": {
-                                    "conditions": [
-                                        {
-                                            // func isEmacsModeNone
-                                            "type": "variable_if",
-                                            "name": "emacs_mode",
-                                            "value": "none"
-                                        }
-                                    ],
                                     "modifiers": {
                                         "mandatory": [
                                             "right_control"
@@ -353,6 +345,13 @@
                                             "right_option",
                                             "right_control"
                                         ]
+                                    },
+                                    // func clearEmacsMode
+                                    {
+                                        "set_variable": {
+                                            "name": "emacs_mode",
+                                            "value": "none"
+                                        }
                                     }
                                 ]
                             }
@@ -363,14 +362,6 @@
                         "manipulators": [
                             {
                                 "type": "basic",
-                                "conditions": [
-                                    {
-                                        // func isEmacsModeNone
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "none"
-                                    }
-                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -385,6 +376,13 @@
                                         "modifiers": [
                                             "right_command"
                                         ]
+                                    },
+                                    // func clearEmacsMode
+                                    {
+                                        "set_variable": {
+                                            "name": "emacs_mode",
+                                            "value": "none"
+                                        }
                                     }
                                 ]
                             }
@@ -524,6 +522,38 @@
                             }
                         ]
                     },
+                    {
+                        "description": "emacs page down",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        // func isEmacsModeNone
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "v"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": [
+                                            "fn"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
                     //
                     // M+{key} : basic command compound variants
                     //
@@ -656,6 +686,38 @@
                             }
                         ]
                     },
+                    {
+                        "description": "emacs page up",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        // func isEmacsModeNone
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_command"
+                                        ]
+                                    },
+                                    "key_code": "v"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": [
+                                            "fn"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
                     //
                     // C-x {key} : general extend commands
                     //
@@ -774,6 +836,341 @@
                                             "name": "emacs_mode",
                                             "value": "none"
                                         }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    //
+                    // Select Mode : C-spc and navigation
+                    //
+                    {
+                        "description": "emacs enter select mode",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        // func isEmacsModeNone
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    // func setEmacsModeSelect
+                                    {
+                                        "set_variable": {
+                                            "name": "emacs_mode",
+                                            "value": "select"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "emacs exit select mode",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        // func isEmacsModeSelect
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "select"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    // func clearEmacsMode
+                                    {
+                                        "set_variable": {
+                                            "name": "emacs_mode",
+                                            "value": "none"
+                                        }
+                                    },
+                                    // func clearSelection
+                                    {
+                                        "key_code": "escape"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "emacs up in select mode",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        // func isEmacsModeSelect
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "select"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "p"
+                                },
+                                "to": [
+                                    {
+                                        "modifiers": [
+                                            "right_shift"
+                                        ],
+                                        "key_code": "up_arrow"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "emacs down in select mode",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        // func isEmacsModeSelect
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "select"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "n"
+                                },
+                                "to": [
+                                    {
+                                        "modifiers": [
+                                            "right_shift"
+                                        ],
+                                        "key_code": "down_arrow"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "emacs back in select mode",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        // func isEmacsModeSelect
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "select"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "b"
+                                },
+                                "to": [
+                                    {
+                                        "modifiers": [
+                                            "right_shift"
+                                        ],
+                                        "key_code": "left_arrow"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "emacs forward in select mode",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        // func isEmacsModeSelect
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "select"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "f"
+                                },
+                                "to": [
+                                    {
+                                        "modifiers": [
+                                            "right_shift"
+                                        ],
+                                        "key_code": "right_arrow"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "emacs line start in select mode",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        // func isEmacsModeSelect
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "select"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "a"
+                                },
+                                "to": [
+                                    {
+                                        "modifiers": [
+                                            "right_shift",
+                                            "right_command"
+                                        ],
+                                        "key_code": "left_arrow"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "emacs line end in select mode",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        // func isEmacsModeSelect
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "select"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "e"
+                                },
+                                "to": [
+                                    {
+                                        "modifiers": [
+                                            "right_shift",
+                                            "right_command"
+                                        ],
+                                        "key_code": "right_arrow"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "emacs file start in select mode",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        // func isEmacsModeSelect
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "select"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control",
+                                            "left_shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "modifiers": [
+                                            "right_shift",
+                                            "right_command"
+                                        ],
+                                        "key_code": "up_arrow"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "emacs file end in select mode",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        // func isEmacsModeSelect
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "select"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control",
+                                            "left_shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "modifiers": [
+                                            "right_shift",
+                                            "right_command"
+                                        ],
+                                        "key_code": "down_arrow"
                                     }
                                 ]
                             }

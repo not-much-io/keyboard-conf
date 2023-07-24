@@ -18,6 +18,9 @@ C : basic command prefix
   > : end of file
   < : start of file
 
+  // karabiner: to fn arrow
+  v : page down
+
   // karabiner: to del
   d : delete char forward
   
@@ -45,6 +48,9 @@ C : basic command prefix
 
   // karabiner: to esc  
   g : cancel
+  
+  // karabiner: shift held navigation mode
+  C-spc : start/end selection
 
 M- : basic command variants
   // karabiner to MacOS Menu Items
@@ -56,6 +62,9 @@ M- : basic command variants
   // karabiner: to alt arrow
   b : back word
   f : forward word
+
+  // karabiner: to fn arrow
+  v : page up
   
   // karabiner: to alt del and fn alt del
   d : delete word forward
@@ -73,9 +82,6 @@ TODO: down page
 ## Application Specific
 
 ```
-
-C-spc : start/end selection
-
 M- : basic command variants
   // ide-s : find usages
   // browser : navigate forward
@@ -100,5 +106,4 @@ C-c C- : mode specific extend command
   f : format
   r : run shell cmd
   a : toggle type annotations
-
 ```
