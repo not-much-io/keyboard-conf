@@ -38,6 +38,7 @@ C : basic command prefix
   // karabiner to MacOS Menu Items:
   // * Edit->Cut
   //   * ex. VSCode, browsers
+  // BUG: in IntelliJ the keymap cut seems to overwrite the menu item? Manually added the menu item combo as cut in keymap.
   w : wipe
 
   // karabiner: to command v
@@ -64,7 +65,7 @@ M- : basic command variants
   f : forward word
 
   // karabiner: to fn arrow
-  v : page up
+  v : page down
   
   // karabiner: to alt del and fn alt del
   d : delete word forward
@@ -77,9 +78,43 @@ C-x : general extend command
   C-s : save
 ```
 
-TODO: down page
-
 ## Application Specific
+
+TODO: define stable keymap that we target from karabiner instead of real keymap
+
+```python
+
+mods1 = [
+  "right_command",
+  "right_option",
+  "right_control",
+  "left_shift"
+]
+
+def stdFindFile():
+  return {
+###       "key_code": "1",
+      "modifiers": mods1
+  }
+
+def stdNextPane():
+  return {
+      "key_code": "n",
+      "modifiers": mods1
+  }
+
+def stdNextPane():
+  return {
+      "key_code": "r",
+      "modifiers": mods1
+  }
+
+def stdReRun():
+  return {
+      "key_code": "r",
+      "modifiers": mods1
+  }
+```
 
 ```
 M- : basic command variants
@@ -104,6 +139,7 @@ C-c C- : mode specific extend command
   t : show type info
   c : run/re-run
   f : format
+  s : search in files
   r : run shell cmd
   a : toggle type annotations
 ```

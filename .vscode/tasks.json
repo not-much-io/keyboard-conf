@@ -4,9 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Install karabiner",
+            "label": "Compile karabiner",
             "type": "shell",
-            "command": "make install"
+            "command": "make karabiner-compile"
         },
         {
             "label": "Get karabiner conf",

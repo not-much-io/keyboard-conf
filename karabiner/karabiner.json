@@ -17,11 +17,33 @@
                     "mouse_motion_to_scroll.speed": 100
                 },
                 "rules": [
-                    // ::BasicCommands.cancel
-
-                    //
-                    // C+{key} : basic commands
-                    //
+                    {
+                        "description": "Cancel",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "g"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "escape"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "emacs_mode",
+                                            "value": "none"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
                     {
                         "description": "emacs cancel",
                         "manipulators": [
@@ -39,8 +61,6 @@
                                     {
                                         "key_code": "escape"
                                     },
-                                    // // Is not really needed generally as will auto clear
-                                    // func clearEmacsMode
                                     {
                                         "set_variable": {
                                             "name": "emacs_mode",
@@ -58,7 +78,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -87,7 +106,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -116,7 +134,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -145,7 +162,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -174,7 +190,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -203,7 +218,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -235,7 +249,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -267,7 +280,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -300,7 +312,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -348,7 +359,6 @@
                                             "right_control"
                                         ]
                                     },
-                                    // func clearEmacsMode
                                     {
                                         "set_variable": {
                                             "name": "emacs_mode",
@@ -379,7 +389,6 @@
                                             "right_command"
                                         ]
                                     },
-                                    // func clearEmacsMode
                                     {
                                         "set_variable": {
                                             "name": "emacs_mode",
@@ -397,7 +406,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -430,7 +438,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -463,7 +470,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -497,7 +503,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -531,7 +536,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -556,9 +560,6 @@
                             }
                         ]
                     },
-                    //
-                    // M+{key} : basic command compound variants
-                    //
                     {
                         "description": "emacs back word",
                         "manipulators": [
@@ -566,7 +567,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -598,7 +598,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -630,7 +629,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -662,7 +660,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -695,7 +692,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -720,9 +716,6 @@
                             }
                         ]
                     },
-                    //
-                    // C-x {key} : general extend commands
-                    //
                     {
                         "description": "emacs mode switch : C-x",
                         "manipulators": [
@@ -745,7 +738,6 @@
                                     }
                                 ],
                                 "to_delayed_action": {
-                                    // If no more keys are pressed for the timeout - clear
                                     "to_if_invoked": [
                                         {
                                             "set_variable": {
@@ -754,16 +746,6 @@
                                             }
                                         }
                                     ]
-                                    // I do not know why this does not work
-                                    // // If another key is before the timeout but after resolving - clear
-                                    // "to_if_canceled": [
-                                    //     {
-                                    //         "set_variable": {
-                                    //             "name": "emacs_mode",
-                                    //             "value": "none"
-                                    //         }
-                                    //     }
-                                    // ]
                                 }
                             }
                         ]
@@ -775,7 +757,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeGeneralExtend
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "C-x"
@@ -793,7 +774,6 @@
                                             "right_control"
                                         ]
                                     },
-                                    // func clearEmacsMode
                                     {
                                         "set_variable": {
                                             "name": "emacs_mode",
@@ -811,7 +791,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeGeneralExtend
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "C-x"
@@ -832,7 +811,6 @@
                                             "right_command"
                                         ]
                                     },
-                                    // func clearEmacsMode
                                     {
                                         "set_variable": {
                                             "name": "emacs_mode",
@@ -850,7 +828,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeGeneralExtend
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "C-x"
@@ -865,7 +842,6 @@
                                     }
                                 },
                                 "to": [
-                                    // func stdFindFile
                                     {
                                         "key_code": "f",
                                         "modifiers": [
@@ -875,7 +851,6 @@
                                             "left_shift"                                            
                                         ]
                                     },
-                                    // func clearEmacsMode
                                     {
                                         "set_variable": {
                                             "name": "emacs_mode",
@@ -893,7 +868,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeGeneralExtend
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "C-x"
@@ -903,7 +877,6 @@
                                     "key_code": "o"
                                 },
                                 "to": [
-                                    // func stdNextPane
                                     {
                                         "key_code": "n",
                                         "modifiers": [
@@ -913,7 +886,6 @@
                                             "left_shift"                                            
                                         ]
                                     },
-                                    // func clearEmacsMode
                                     {
                                         "set_variable": {
                                             "name": "emacs_mode",
@@ -924,9 +896,6 @@
                             }
                         ]
                     },
-                    //
-                    // C-c C-{key} : mode specific extend commands
-                    //
 
 
 
@@ -953,7 +922,6 @@
                                     }
                                 ],
                                 "to_delayed_action": {
-                                    // If no more keys are pressed for the timeout - clear
                                     "to_if_invoked": [
                                         {
                                             "set_variable": {
@@ -962,23 +930,10 @@
                                             }
                                         }
                                     ]
-                                    // I do not know why this does not work
-                                    // // If another key is before the timeout but after resolving - clear
-                                    // "to_if_canceled": [
-                                    //     {
-                                    //         "set_variable": {
-                                    //             "name": "emacs_mode",
-                                    //             "value": "none"
-                                    //         }
-                                    //     }
-                                    // ]
                                 }
                             }
                         ]
                     },
-                    //
-                    // Select Mode : C-spc and navigation
-                    //
                     {
                         "description": "emacs enter select mode",
                         "manipulators": [
@@ -986,7 +941,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeNone
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
@@ -1001,7 +955,6 @@
                                     }
                                 },
                                 "to": [
-                                    // func setEmacsModeSelect
                                     {
                                         "set_variable": {
                                             "name": "emacs_mode",
@@ -1019,7 +972,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeSelect
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "select"
@@ -1034,14 +986,12 @@
                                     }
                                 },
                                 "to": [
-                                    // func clearEmacsMode
                                     {
                                         "set_variable": {
                                             "name": "emacs_mode",
                                             "value": "none"
                                         }
                                     },
-                                    // func clearSelection
                                     {
                                         "key_code": "escape"
                                     }
@@ -1056,7 +1006,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeSelect
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "select"
@@ -1088,7 +1037,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeSelect
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "select"
@@ -1120,7 +1068,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeSelect
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "select"
@@ -1152,7 +1099,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeSelect
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "select"
@@ -1184,7 +1130,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeSelect
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "select"
@@ -1217,7 +1162,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeSelect
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "select"
@@ -1250,7 +1194,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeSelect
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "select"
@@ -1284,7 +1227,6 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        // func isEmacsModeSelect
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "select"
