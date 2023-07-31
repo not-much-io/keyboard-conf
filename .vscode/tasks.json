@@ -6,7 +6,12 @@
         {
             "label": "Compile karabiner",
             "type": "shell",
-            "command": "make karabiner-compile"
+            "command": "make karabiner-compile",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         },
         {
             "label": "Get karabiner conf",

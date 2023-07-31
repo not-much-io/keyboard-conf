@@ -3,3 +3,6 @@ karabiner-compile:
 
 karabiner-install:
 	python3 karabiner/karabiner.json > ../../.config/karabiner/karabiner.json
+
+karabiner-backup:
+	cp ../../.config/karabiner/karabiner.json karabiner/backup.json
