@@ -26,7 +26,8 @@ class Utils:
 class SPECIFIC_KEYS:
     esc = {"key_code": "escape"}
 
-    delete = {"key_code": "delete_or_backspace"}
+    backspace = {"key_code": "delete_or_backspace"}
+    delete = {"key_code": "delete"}
 
     up = {"key_code": "up_arrow"}
     down = {"key_code": "down_arrow"}
@@ -108,14 +109,14 @@ class STD_MACOS_KEYBINDS:
     line_start = validate_keybinding(
         {
             "modifiers": [
-                MODIFIERS.control,
+                MODIFIERS.command,
             ]
         } | SPECIFIC_KEYS.left
     )
     line_end = validate_keybinding(
         {
             "modifiers": [
-                MODIFIERS.control,
+                MODIFIERS.command,
             ]
         } | SPECIFIC_KEYS.right
     )

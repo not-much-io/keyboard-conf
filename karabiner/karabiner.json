@@ -11,7 +11,7 @@
             "complex_modifications": {
                 "parameters": {
                     "basic.simultaneous_threshold_milliseconds": 50,
-                    "basic.to_delayed_action_delay_milliseconds": 2500,
+                    "basic.to_delayed_action_delay_milliseconds": 500,
                     "basic.to_if_alone_timeout_milliseconds": 1000,
                     "basic.to_if_held_down_threshold_milliseconds": 500,
                     "mouse_motion_to_scroll.speed": 100
@@ -19,21 +19,21 @@
                 "rules": [
                     {
                         "description": "Up",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 0
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -52,21 +52,21 @@
                     },
                     {
                         "description": "Down",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 0
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -85,21 +85,21 @@
                     },
                     {
                         "description": "Left",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 0
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -118,21 +118,21 @@
                     },
                     {
                         "description": "Right",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 0
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -151,21 +151,21 @@
                     },
                     {
                         "description": "Forward Word",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 0
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -187,21 +187,21 @@
                     },
                     {
                         "description": "Backward Word",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 0
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -223,21 +223,21 @@
                     },
                     {
                         "description": "Line Start",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 0
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -249,7 +249,7 @@
                                 "to": [
                                     {
                                         "modifiers": [
-                                            "right_control"
+                                            "right_command"
                                         ],
                                         "key_code": "left_arrow"
                                     }
@@ -259,21 +259,21 @@
                     },
                     {
                         "description": "Line End",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 0
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -285,7 +285,7 @@
                                 "to": [
                                     {
                                         "modifiers": [
-                                            "right_control"
+                                            "right_command"
                                         ],
                                         "key_code": "right_arrow"
                                     }
@@ -295,21 +295,21 @@
                     },
                     {
                         "description": "Page Down",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 0
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -331,21 +331,21 @@
                     },
                     {
                         "description": "Page Up",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 0
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -367,21 +367,21 @@
                     },
                     {
                         "description": "File Start",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 0
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -404,21 +404,21 @@
                     },
                     {
                         "description": "File End",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 0
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -441,16 +441,16 @@
                     },
                     {
                         "description": "Wipe",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -475,16 +475,16 @@
                     },
                     {
                         "description": "Yank",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -506,7 +506,6 @@
                     },
                     {
                         "description": "Undo",
-                        "conditions": null,
                         "manipulators": [
                             {
                                 "type": "basic",
@@ -532,7 +531,6 @@
                     },
                     {
                         "description": "Redo",
-                        "conditions": null,
                         "manipulators": [
                             {
                                 "type": "basic",
@@ -558,16 +556,16 @@
                     },
                     {
                         "description": "Delete Word Backward",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -589,16 +587,16 @@
                     },
                     {
                         "description": "Delete",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -609,7 +607,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "delete_or_backspace"
+                                        "key_code": "delete"
                                     }
                                 ]
                             }
@@ -617,16 +615,16 @@
                     },
                     {
                         "description": "Delete Word Forward",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -649,7 +647,6 @@
                     },
                     {
                         "description": "Cancel",
-                        "conditions": null,
                         "manipulators": [
                             {
                                 "type": "basic",
@@ -670,6 +667,12 @@
                                             "name": "emacs_mode",
                                             "value": "none"
                                         }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "select_mode",
+                                            "value": "off"
+                                        }
                                     }
                                 ]
                             }
@@ -677,16 +680,16 @@
                     },
                     {
                         "description": "Search",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -714,16 +717,16 @@
                     },
                     {
                         "description": "Emacs Mode: General Extend",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -741,32 +744,30 @@
                                     }
                                 ],
                                 "to_delayed_action": {
-                                    "to_delayed_action": {
-                                        "to_if_invoked": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "emacs_mode",
-                                                    "value": "none"
-                                                }
+                                    "to_if_invoked": [
+                                        {
+                                            "set_variable": {
+                                                "name": "emacs_mode",
+                                                "value": "none"
                                             }
-                                        ]
-                                    }
+                                        }
+                                    ]
                                 }
                             }
                         ]
                     },
                     {
-                        "description": "select all",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "C-x"
-                            }
-                        ],
+                        "description": "Select all",
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "C-x"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "h"
                                 },
@@ -788,17 +789,17 @@
                         ]
                     },
                     {
-                        "description": "save",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "C-x"
-                            }
-                        ],
+                        "description": "Save",
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "C-x"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -826,16 +827,16 @@
                     },
                     {
                         "description": "Select Mode: On",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 0
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -848,7 +849,7 @@
                                     {
                                         "set_variable": {
                                             "name": "select_mode",
-                                            "value": 1
+                                            "value": "on"
                                         }
                                     }
                                 ]
@@ -857,16 +858,16 @@
                     },
                     {
                         "description": "Select Mode: Off",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 1
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -879,7 +880,7 @@
                                     {
                                         "set_variable": {
                                             "name": "select_mode",
-                                            "value": 0
+                                            "value": "off"
                                         }
                                     },
                                     {
@@ -891,21 +892,21 @@
                     },
                     {
                         "description": "Up (Select Mode)",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 1
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -927,21 +928,21 @@
                     },
                     {
                         "description": "Down (Select Mode)",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 1
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -963,21 +964,21 @@
                     },
                     {
                         "description": "Left (Select Mode)",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 1
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -999,21 +1000,21 @@
                     },
                     {
                         "description": "Right (Select Mode)",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 1
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -1035,21 +1036,21 @@
                     },
                     {
                         "description": "Forward Word (Select Mode)",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 1
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -1072,21 +1073,21 @@
                     },
                     {
                         "description": "Backward Word (Select Mode)",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 1
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -1109,21 +1110,21 @@
                     },
                     {
                         "description": "Line Start (Select Mode)",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 1
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -1135,7 +1136,7 @@
                                 "to": [
                                     {
                                         "modifiers": [
-                                            "right_control",
+                                            "right_command",
                                             "right_shift"
                                         ],
                                         "key_code": "left_arrow"
@@ -1146,21 +1147,21 @@
                     },
                     {
                         "description": "Line End (Select Mode)",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 1
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -1172,7 +1173,7 @@
                                 "to": [
                                     {
                                         "modifiers": [
-                                            "right_control",
+                                            "right_command",
                                             "right_shift"
                                         ],
                                         "key_code": "right_arrow"
@@ -1183,21 +1184,21 @@
                     },
                     {
                         "description": "Page Down (Select Mode)",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 1
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -1220,21 +1221,21 @@
                     },
                     {
                         "description": "Page Up (Select Mode)",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 1
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -1257,21 +1258,21 @@
                     },
                     {
                         "description": "File Start (Select Mode)",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 1
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
@@ -1295,21 +1296,21 @@
                     },
                     {
                         "description": "File End (Select Mode)",
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "emacs_mode",
-                                "value": "none"
-                            },
-                            {
-                                "type": "variable_if",
-                                "name": "select_mode",
-                                "value": 1
-                            }
-                        ],
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [

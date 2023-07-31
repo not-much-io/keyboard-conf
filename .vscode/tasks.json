@@ -14,9 +14,19 @@
             }
         },
         {
-            "label": "Get karabiner conf",
+            "label": "Install",
             "type": "shell",
-            "command": "make get"
-        }
+            "command": "make karabiner-install",
+        },
+        {
+            "label": "Backup",
+            "type": "shell",
+            "command": "make karabiner-backup",
+        },
+        {
+            "label": "Restore",
+            "type": "shell",
+            "command": "make karabiner-restore",
+        },
     ]
 }

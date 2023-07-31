@@ -59,23 +59,23 @@ class Utils:
     is_select_mode_on = {
         "type": "variable_if",
         "name": "select_mode",
-        "value": 1
+        "value": "on"
     }
     is_select_mode_off = {
         "type": "variable_if",
         "name": "select_mode",
-        "value": 0
+        "value": "off"
     }
     set_select_mode_on = {
         "set_variable": {
             "name": "select_mode",
-            "value": 1
+            "value": "on"
         }
     }
     set_select_mode_off = {
         "set_variable": {
             "name": "select_mode",
-            "value": 0
+            "value": "off"
         }
     }
 
@@ -92,18 +92,22 @@ class Utils:
         """
         modification = {
             "description": desc,
-            "conditions": conditions,
             "manipulators": [
                 {
                     "type": "basic",
+                    "conditions": conditions,
                     "from": from_,
                     "to": to
                 }
             ]
         }
 
+        if conditions is None:
+            modification["manipulators"][0].pop("conditions")
         if to_delayed_action:
-            modification["manipulators"][0]["to_delayed_action"] = to_delayed_action
+            modification["manipulators"][0]["to_delayed_action"] = to_delayed_action[
+                "to_delayed_action"
+            ]
 
         if desc in Utils.complex_mods_registry:
             raise RuntimeError(f"Duplicate description: {desc}")
@@ -177,7 +181,7 @@ class Utils:
         original = Utils.complex_mods_registry[desc]
         
         new_desc = f"{desc} (Select Mode)"
-        new_cond = deepcopy(original["conditions"])
+        new_cond = deepcopy(original["manipulators"][0]["conditions"])
         new_cond.append(Utils.is_select_mode_on)
         new_to_mods = deepcopy(original["manipulators"][0]["to"][0].get(
             "modifiers",
@@ -195,7 +199,7 @@ class Utils:
             conditions=new_cond,
         )
         
-        original["conditions"].append(Utils.is_select_mode_off)
+        original["manipulators"][0]["conditions"].append(Utils.is_select_mode_off)
 
     @staticmethod
     def translate_if_symbol(key: str) -> (str, Optional[str]):
@@ -307,7 +311,7 @@ def create_keybinds():
         to=[
             # Emulating cut as real cut through Command + X will be taken by Emacs "action search"
             keys.STD_MACOS_KEYBINDS.copy,
-            keys.SPECIFIC_KEYS.delete,
+            keys.SPECIFIC_KEYS.backspace,
         ],
     )
     Utils.new_basic_cmd(
@@ -363,6 +367,7 @@ def create_keybinds():
         to=[
             keys.SPECIFIC_KEYS.esc,
             Utils.clear_emacs_mode,
+            Utils.set_select_mode_off,
         ],
         conditions=None,  # relevant in any mode
     )
@@ -390,12 +395,12 @@ def create_keybinds():
         ]
     )
     Utils.new_general_extend_command(
-        "select all",
+        "Select all",
         from_=keys.STD_EMACS_KEYBINDS.select_all,
         to=[keys.STD_MACOS_KEYBINDS.select_all]
     )
     Utils.new_general_extend_command(
-        "save",
+        "Save",
         from_=keys.STD_EMACS_KEYBINDS.save,
         to=[keys.STD_MACOS_KEYBINDS.save]
     )
