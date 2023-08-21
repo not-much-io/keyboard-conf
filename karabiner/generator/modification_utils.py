@@ -30,9 +30,7 @@ class Manipulation(FromWorkaround):
     conditions: NotRequired[List[Condition]]
     # See FromWorkaround, there is this field here
     # from: List[ConsumableKeyEvent]
-    to: List[
-        Union[ProducibleKeyEvent, SetVariable]
-    ]
+    to: List[Union[ProducibleKeyEvent, SetVariable]]
     to_delayed_action: NotRequired[ToDelayedAction]
 
 
