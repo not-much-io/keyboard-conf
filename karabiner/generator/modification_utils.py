@@ -1,4 +1,4 @@
-from typing import TypedDict, Optional, List, Literal, Union, NotRequired
+from typing import TypedDict, List, Literal, Union, NotRequired
 from .event_utils import ProducibleKeyEvent, ConsumableKeyEvent
 
 
