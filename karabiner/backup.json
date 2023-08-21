@@ -11,41 +11,14 @@
             "complex_modifications": {
                 "parameters": {
                     "basic.simultaneous_threshold_milliseconds": 50,
-                    "basic.to_delayed_action_delay_milliseconds": 2500,
+                    "basic.to_delayed_action_delay_milliseconds": 500,
                     "basic.to_if_alone_timeout_milliseconds": 1000,
                     "basic.to_if_held_down_threshold_milliseconds": 500,
                     "mouse_motion_to_scroll.speed": 100
                 },
                 "rules": [
                     {
-                        "description": "emacs cancel",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control"
-                                        ]
-                                    },
-                                    "key_code": "g"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "escape"
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "emacs_mode",
-                                            "value": "none"
-                                        }
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs up",
+                        "description": "Up",
                         "manipulators": [
                             {
                                 "type": "basic",
@@ -54,6 +27,11 @@
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
                                     }
                                 ],
                                 "from": {
@@ -73,7 +51,7 @@
                         ]
                     },
                     {
-                        "description": "emacs down",
+                        "description": "Down",
                         "manipulators": [
                             {
                                 "type": "basic",
@@ -82,6 +60,11 @@
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
                                     }
                                 ],
                                 "from": {
@@ -101,7 +84,7 @@
                         ]
                     },
                     {
-                        "description": "emacs back",
+                        "description": "Left",
                         "manipulators": [
                             {
                                 "type": "basic",
@@ -110,6 +93,11 @@
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
                                     }
                                 ],
                                 "from": {
@@ -129,7 +117,7 @@
                         ]
                     },
                     {
-                        "description": "emacs forward",
+                        "description": "Right",
                         "manipulators": [
                             {
                                 "type": "basic",
@@ -138,6 +126,11 @@
                                         "type": "variable_if",
                                         "name": "emacs_mode",
                                         "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
                                     }
                                 ],
                                 "from": {
@@ -157,7 +150,449 @@
                         ]
                     },
                     {
-                        "description": "emacs delete",
+                        "description": "Forward Word",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_command"
+                                        ]
+                                    },
+                                    "key_code": "f"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "right_option"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Backward Word",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_command"
+                                        ]
+                                    },
+                                    "key_code": "b"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "right_option"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Line Start",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "a"
+                                },
+                                "to": [
+                                    {
+                                        "modifiers": [
+                                            "right_command"
+                                        ],
+                                        "key_code": "left_arrow"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Line End",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "e"
+                                },
+                                "to": [
+                                    {
+                                        "modifiers": [
+                                            "right_command"
+                                        ],
+                                        "key_code": "right_arrow"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Page Down",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "v"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": [
+                                            "fn"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Page Up",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_command"
+                                        ]
+                                    },
+                                    "key_code": "v"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": [
+                                            "fn"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "File Start",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control",
+                                            "left_shift"
+                                        ]
+                                    },
+                                    "key_code": "comma"
+                                },
+                                "to": [
+                                    {
+                                        "modifiers": [
+                                            "right_command"
+                                        ],
+                                        "key_code": "up_arrow"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "File End",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control",
+                                            "left_shift"
+                                        ]
+                                    },
+                                    "key_code": "period"
+                                },
+                                "to": [
+                                    {
+                                        "modifiers": [
+                                            "right_command"
+                                        ],
+                                        "key_code": "down_arrow"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Wipe",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "w"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "c",
+                                        "modifiers": [
+                                            "right_command"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "delete_or_backspace"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "select_mode",
+                                            "value": "off"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Yank",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "y"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "v",
+                                        "modifiers": [
+                                            "right_command"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Undo",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control",
+                                            "left_shift"
+                                        ]
+                                    },
+                                    "key_code": "hyphen"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "z",
+                                        "modifiers": [
+                                            "right_command"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Redo",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "hyphen"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "z",
+                                        "modifiers": [
+                                            "right_command",
+                                            "right_shift"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Delete Word Backward",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_command"
+                                        ]
+                                    },
+                                    "key_code": "delete_or_backspace"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_or_backspace",
+                                        "modifiers": [
+                                            "right_option"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Delete",
                         "manipulators": [
                             {
                                 "type": "basic",
@@ -185,7 +620,7 @@
                         ]
                     },
                     {
-                        "description": "emacs line start",
+                        "description": "Delete Word Forward",
                         "manipulators": [
                             {
                                 "type": "basic",
@@ -199,143 +634,50 @@
                                 "from": {
                                     "modifiers": {
                                         "mandatory": [
-                                            "right_control"
-                                        ]
-                                    },
-                                    "key_code": "a"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_arrow",
-                                        "modifiers": [
                                             "right_command"
                                         ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs line end",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "none"
-                                    }
-                                ],
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control"
-                                        ]
                                     },
-                                    "key_code": "e"
+                                    "key_code": "d"
                                 },
                                 "to": [
                                     {
-                                        "key_code": "right_arrow",
+                                        "key_code": "delete_or_backspace",
                                         "modifiers": [
-                                            "right_command"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs file start",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "none"
-                                    }
-                                ],
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control",
-                                            "left_shift"
-                                        ]
-                                    },
-                                    "key_code": "comma"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "up_arrow",
-                                        "modifiers": [
-                                            "right_command"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs file end",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "none"
-                                    }
-                                ],
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control",
-                                            "left_shift"
-                                        ]
-                                    },
-                                    "key_code": "period"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "down_arrow",
-                                        "modifiers": [
-                                            "right_command"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs wipe",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control"
-                                        ]
-                                    },
-                                    "key_code": "w"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "x",
-                                        "modifiers": [
-                                            "right_command",
                                             "right_option",
+                                            "fn"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Cancel",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
                                             "right_control"
                                         ]
+                                    },
+                                    "key_code": "g"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "escape"
                                     },
                                     {
                                         "set_variable": {
                                             "name": "emacs_mode",
                                             "value": "none"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "select_mode",
+                                            "value": "off"
                                         }
                                     }
                                 ]
@@ -343,101 +685,7 @@
                         ]
                     },
                     {
-                        "description": "emacs yank",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control"
-                                        ]
-                                    },
-                                    "key_code": "y"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "v",
-                                        "modifiers": [
-                                            "right_command"
-                                        ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "emacs_mode",
-                                            "value": "none"
-                                        }
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs undo",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "none"
-                                    }
-                                ],
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control",
-                                            "left_shift"
-                                        ]
-                                    },
-                                    "key_code": "hyphen"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "z",
-                                        "modifiers": [
-                                            "right_command"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs redo",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "none"
-                                    }
-                                ],
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control"
-                                        ]
-                                    },
-                                    "key_code": "hyphen"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "z",
-                                        "modifiers": [
-                                            "right_command",
-                                            "left_shift"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs search",
+                        "description": "Search",
                         "manipulators": [
                             {
                                 "type": "basic",
@@ -460,10 +708,734 @@
                                     {
                                         "key_code": "f",
                                         "modifiers": [
-                                            "right_command",
-                                            "right_option",
+                                            "left_command"
+                                        ]
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "emacs_mode",
+                                            "value": "none"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Emacs Mode: General Extend",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
                                             "right_control"
                                         ]
+                                    },
+                                    "key_code": "x"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "emacs_mode",
+                                            "value": "C-x"
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_invoked": [
+                                        {
+                                            "set_variable": {
+                                                "name": "emacs_mode",
+                                                "value": "none"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Select all",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "C-x"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "h"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": [
+                                            "right_command"
+                                        ]
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "emacs_mode",
+                                            "value": "none"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Save",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "C-x"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "s"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "s",
+                                        "modifiers": [
+                                            "right_command"
+                                        ]
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "emacs_mode",
+                                            "value": "none"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Select Mode: On",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "off"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "spacebar"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "select_mode",
+                                            "value": "on"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Select Mode: Off",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "spacebar"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "select_mode",
+                                            "value": "off"
+                                        }
+                                    },
+                                    {
+                                        "key_code": "escape"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Up (Select Mode)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "p"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": [
+                                            "right_shift"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Down (Select Mode)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "n"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": [
+                                            "right_shift"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Left (Select Mode)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "b"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "right_shift"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Right (Select Mode)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "f"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "right_shift"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Forward Word (Select Mode)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_command"
+                                        ]
+                                    },
+                                    "key_code": "f"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "right_option",
+                                            "right_shift"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Backward Word (Select Mode)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_command"
+                                        ]
+                                    },
+                                    "key_code": "b"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "right_option",
+                                            "right_shift"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Line Start (Select Mode)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "a"
+                                },
+                                "to": [
+                                    {
+                                        "modifiers": [
+                                            "right_command",
+                                            "right_shift"
+                                        ],
+                                        "key_code": "left_arrow"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Line End (Select Mode)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "e"
+                                },
+                                "to": [
+                                    {
+                                        "modifiers": [
+                                            "right_command",
+                                            "right_shift"
+                                        ],
+                                        "key_code": "right_arrow"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Page Down (Select Mode)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    },
+                                    "key_code": "v"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": [
+                                            "fn",
+                                            "right_shift"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Page Up (Select Mode)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_command"
+                                        ]
+                                    },
+                                    "key_code": "v"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": [
+                                            "fn",
+                                            "right_shift"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "File Start (Select Mode)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control",
+                                            "left_shift"
+                                        ]
+                                    },
+                                    "key_code": "comma"
+                                },
+                                "to": [
+                                    {
+                                        "modifiers": [
+                                            "right_command",
+                                            "right_shift"
+                                        ],
+                                        "key_code": "up_arrow"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "File End (Select Mode)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "select_mode",
+                                        "value": "on"
+                                    }
+                                ],
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control",
+                                            "left_shift"
+                                        ]
+                                    },
+                                    "key_code": "period"
+                                },
+                                "to": [
+                                    {
+                                        "modifiers": [
+                                            "right_command",
+                                            "right_shift"
+                                        ],
+                                        "key_code": "down_arrow"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Editor: Toggle Comment",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control",
+                                            "left_shift"
+                                        ]
+                                    },
+                                    "key_code": "semicolon"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "right_command"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "l"
+                                    },
+                                    {
+                                        "key_code": "i"
+                                    },
+                                    {
+                                        "key_code": "n"
+                                    },
+                                    {
+                                        "key_code": "e"
+                                    },
+                                    {
+                                        "key_code": "spacebar"
+                                    },
+                                    {
+                                        "key_code": "c"
+                                    },
+                                    {
+                                        "key_code": "o"
+                                    },
+                                    {
+                                        "key_code": "m"
+                                    },
+                                    {
+                                        "key_code": "m"
+                                    },
+                                    {
+                                        "key_code": "e"
+                                    },
+                                    {
+                                        "key_code": "n"
+                                    },
+                                    {
+                                        "key_code": "t"
+                                    },
+                                    {
+                                        "key_code": "spacebar"
+                                    },
+                                    {
+                                        "key_code": "spacebar"
+                                    },
+                                    {
+                                        "key_code": "spacebar"
+                                    },
+                                    {
+                                        "key_code": "spacebar"
+                                    },
+                                    {
+                                        "key_code": "spacebar"
+                                    },
+                                    {
+                                        "key_code": "spacebar"
+                                    },
+                                    {
+                                        "key_code": "spacebar"
+                                    },
+                                    {
+                                        "key_code": "spacebar"
+                                    },
+                                    {
+                                        "key_code": "spacebar"
+                                    },
+                                    {
+                                        "key_code": "spacebar"
+                                    },
+                                    {
+                                        "key_code": "spacebar"
+                                    },
+                                    {
+                                        "key_code": "spacebar"
+                                    },
+                                    {
+                                        "key_code": "spacebar"
+                                    },
+                                    {
+                                        "key_code": "return_or_enter"
                                     }
                                 ]
                             }
@@ -503,298 +1475,6 @@
                         ]
                     },
                     {
-                        "description": "emacs page down",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "none"
-                                    }
-                                ],
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control"
-                                        ]
-                                    },
-                                    "key_code": "v"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "down_arrow",
-                                        "modifiers": [
-                                            "fn"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs back word",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "none"
-                                    }
-                                ],
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_command"
-                                        ]
-                                    },
-                                    "key_code": "b"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_arrow",
-                                        "modifiers": [
-                                            "right_option"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs forward word",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "none"
-                                    }
-                                ],
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_command"
-                                        ]
-                                    },
-                                    "key_code": "f"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_arrow",
-                                        "modifiers": [
-                                            "right_option"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs delete back word",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "none"
-                                    }
-                                ],
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_command"
-                                        ]
-                                    },
-                                    "key_code": "delete_or_backspace"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "delete_or_backspace",
-                                        "modifiers": [
-                                            "right_option"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs delete forward word",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "none"
-                                    }
-                                ],
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_command"
-                                        ]
-                                    },
-                                    "key_code": "d"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "delete_or_backspace",
-                                        "modifiers": [
-                                            "right_option",
-                                            "fn"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs page up",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "none"
-                                    }
-                                ],
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_command"
-                                        ]
-                                    },
-                                    "key_code": "v"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "up_arrow",
-                                        "modifiers": [
-                                            "fn"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs mode switch : C-x",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control"
-                                        ]
-                                    },
-                                    "key_code": "x"
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "emacs_mode",
-                                            "value": "C-x"
-                                        }
-                                    }
-                                ],
-                                "to_delayed_action": {
-                                    "to_if_invoked": [
-                                        {
-                                            "set_variable": {
-                                                "name": "emacs_mode",
-                                                "value": "none"
-                                            }
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs select all",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "C-x"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "h"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "a",
-                                        "modifiers": [
-                                            "right_command",
-                                            "right_option",
-                                            "right_control"
-                                        ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "emacs_mode",
-                                            "value": "none"
-                                        }
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs save",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "C-x"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "s",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "s",
-                                        "modifiers": [
-                                            "right_command"
-                                        ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "emacs_mode",
-                                            "value": "none"
-                                        }
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
                         "description": "emacs find file",
                         "manipulators": [
                             {
@@ -821,7 +1501,7 @@
                                             "right_command",
                                             "right_option",
                                             "right_control",
-                                            "left_shift"                                            
+                                            "left_shift"
                                         ]
                                     },
                                     {
@@ -856,7 +1536,7 @@
                                             "right_command",
                                             "right_option",
                                             "right_control",
-                                            "left_shift"                                            
+                                            "left_shift"
                                         ]
                                     },
                                     {
@@ -900,325 +1580,6 @@
                                         }
                                     ]
                                 }
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs enter select mode",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "none"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "spacebar",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "emacs_mode",
-                                            "value": "select"
-                                        }
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs exit select mode",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "select"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "spacebar",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "emacs_mode",
-                                            "value": "none"
-                                        }
-                                    },
-                                    {
-                                        "key_code": "escape"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs up in select mode",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "select"
-                                    }
-                                ],
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control"
-                                        ]
-                                    },
-                                    "key_code": "p"
-                                },
-                                "to": [
-                                    {
-                                        "modifiers": [
-                                            "right_shift"
-                                        ],
-                                        "key_code": "up_arrow"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs down in select mode",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "select"
-                                    }
-                                ],
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control"
-                                        ]
-                                    },
-                                    "key_code": "n"
-                                },
-                                "to": [
-                                    {
-                                        "modifiers": [
-                                            "right_shift"
-                                        ],
-                                        "key_code": "down_arrow"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs back in select mode",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "select"
-                                    }
-                                ],
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control"
-                                        ]
-                                    },
-                                    "key_code": "b"
-                                },
-                                "to": [
-                                    {
-                                        "modifiers": [
-                                            "right_shift"
-                                        ],
-                                        "key_code": "left_arrow"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs forward in select mode",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "select"
-                                    }
-                                ],
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control"
-                                        ]
-                                    },
-                                    "key_code": "f"
-                                },
-                                "to": [
-                                    {
-                                        "modifiers": [
-                                            "right_shift"
-                                        ],
-                                        "key_code": "right_arrow"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs line start in select mode",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "select"
-                                    }
-                                ],
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control"
-                                        ]
-                                    },
-                                    "key_code": "a"
-                                },
-                                "to": [
-                                    {
-                                        "modifiers": [
-                                            "right_shift",
-                                            "right_command"
-                                        ],
-                                        "key_code": "left_arrow"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs line end in select mode",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "select"
-                                    }
-                                ],
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control"
-                                        ]
-                                    },
-                                    "key_code": "e"
-                                },
-                                "to": [
-                                    {
-                                        "modifiers": [
-                                            "right_shift",
-                                            "right_command"
-                                        ],
-                                        "key_code": "right_arrow"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs file start in select mode",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "select"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "comma",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control",
-                                            "left_shift"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "modifiers": [
-                                            "right_shift",
-                                            "right_command"
-                                        ],
-                                        "key_code": "up_arrow"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs file end in select mode",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "select"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "period",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control",
-                                            "left_shift"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "modifiers": [
-                                            "right_shift",
-                                            "right_command"
-                                        ],
-                                        "key_code": "down_arrow"
-                                    }
-                                ]
                             }
                         ]
                     }
