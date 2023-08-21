@@ -28,5 +28,10 @@
             "type": "shell",
             "command": "make karabiner-restore",
         },
+        {
+            "label": "Devloop",
+            "type": "shell",
+            "command": "make karabiner-devloop",
+        }
     ]
 }
