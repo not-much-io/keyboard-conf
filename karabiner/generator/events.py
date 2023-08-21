@@ -437,7 +437,6 @@ class STD_EMACS_KEYBIND_EVENTS:
     select_all = ConsumableKeyEvent(
         {
             "key_code": "h",
-            "modifiers": None
         }
     )
     save = ConsumableKeyEvent(

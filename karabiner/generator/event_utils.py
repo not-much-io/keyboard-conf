@@ -1,4 +1,4 @@
-from typing import Dict, Optional, List, TypedDict, Literal, Tuple, Union
+from typing import Dict, Optional, List, TypedDict, Literal, Tuple, Union, NotRequired
 from .keys import MODIFIER_KEYS, KeyCode, Modifier
 
 
@@ -25,7 +25,7 @@ class ConsumableKeyEvent(KeyEvent):
     """
     # A consumable key even has the concept of mandatory and optional modifiers.
     # The optional modifier just allows more lenient detection of the key event.
-    modifiers: Optional[
+    modifiers: NotRequired[
         Dict[
             _ModifierKindLit,
             Modifiers
@@ -40,6 +40,7 @@ def __init__key_event(raw_dict: Union["ProducibleKeyEvent", "ConsumableKeyEvent"
     """
     raw_dict["key_code"], modifier = translate_symbols(raw_dict["key_code"])
     if modifier:
+        assert "modifiers" in raw_dict
         if type(raw_dict["modifiers"]) == list:
             raw_dict["modifiers"].append(modifier)
         elif type(raw_dict["modifiers"]) == dict:

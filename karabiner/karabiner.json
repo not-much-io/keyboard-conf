@@ -768,8 +768,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "h",
-                                    "modifiers": null
+                                    "key_code": "h"
                                 },
                                 "to": [
                                     {
