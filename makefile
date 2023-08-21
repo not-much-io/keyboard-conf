@@ -1,5 +1,5 @@
 karabiner-compile:
-	python3 karabiner/compile.py > karabiner/karabiner.json
+	python3 karabiner/generate.py > karabiner/karabiner.json
 
 karabiner-install:
 	cat karabiner/karabiner.json > ../../.config/karabiner/karabiner.json
@@ -9,3 +9,5 @@ karabiner-backup:
 
 karabiner-restore:
 	cat karabiner/backup.json > ../../.config/karabiner/karabiner.json
+
+karabiner-devloop: karabiner-compile karabiner-install
