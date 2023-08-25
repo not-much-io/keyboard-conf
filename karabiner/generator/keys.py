@@ -7,6 +7,7 @@ class SPECIFIC_KEYS:
 
     backspace: KeyCode = "delete_or_backspace"
     delete: KeyCode = "delete"
+    enter: KeyCode = "return_or_enter"
 
     up: KeyCode = "up_arrow"
     down: KeyCode = "down_arrow"

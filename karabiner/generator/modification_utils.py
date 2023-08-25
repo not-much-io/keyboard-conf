@@ -1,5 +1,14 @@
-from typing import TypedDict, List, Literal, Union, NotRequired
-from .event_utils import ProducibleKeyEvent, ConsumableKeyEvent
+from typing import (
+    TypedDict,
+    List,
+    Literal,
+    Union,
+    NotRequired,
+)
+from .event_utils import (
+    ProducibleKeyEvent,
+    ConsumableKeyEvent,
+)
 
 
 class Condition(TypedDict):
@@ -18,11 +27,14 @@ class SetVariable(TypedDict):
 
 
 class ToDelayedAction(TypedDict):
-    to_if_invoked: List[SetVariable]
+    to_if_invoked: NotRequired[List[SetVariable]]
+    to_if_canceled: NotRequired[List[SetVariable]]
 
 
 # from is a reserved keyword so using this workaround
-FromWorkaround = TypedDict("From", {"from": ConsumableKeyEvent})
+FromWorkaround = TypedDict(
+    "From", {"from": ConsumableKeyEvent}
+)
 
 
 class Manipulation(FromWorkaround):
