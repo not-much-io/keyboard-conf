@@ -650,6 +650,22 @@ modifications += [
             },
         ],
     ),
+    Modification(
+        description="Emacs Mode: Mode Specific: Peek Type Definition",
+        manipulators=[
+            {
+                "type": "basic",
+                "conditions": [
+                    Utils.is_emacs_mode_mode_specific
+                ],
+                "from": STDEmacsKeyEvents.std_ide_keymap.peek_type_defn,
+                "to": [
+                    STDIdeKeyEvents.peek_type_defn,
+                    Utils.clear_emacs_mode,
+                ],
+            },
+        ],
+    ),
 ]
 
 # Define the select mode modifications

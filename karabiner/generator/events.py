@@ -54,8 +54,10 @@ class StdIdeKeymap(Generic[KeyEvent]):
     go_back: KeyEvent
     find_file: KeyEvent
     focus_next_window: KeyEvent
+    # close_window: KeyEvent
     find_in_files: KeyEvent
     toggle_comment: KeyEvent
+    peek_type_defn: KeyEvent
 
     # # select_next_match: KeyEvent
 
@@ -63,12 +65,10 @@ class StdIdeKeymap(Generic[KeyEvent]):
     # show_recent_files: KeyEvent
     # toggle_type_annotations: KeyEvent
 
-    # peek_type_defn: KeyEvent
-
     # pane_split_vertical: KeyEvent
     # pane_split_horizontal: KeyEvent
-    # pane_next: KeyEvent
     # pane_close: KeyEvent
+
 
 @dataclass
 class EmacsUtilsKeymap(Generic[KeyEvent]):
@@ -545,6 +545,16 @@ STDEmacsKeyEvents = EmacsKeymap(
                 },
             }
         ),
+        peek_type_defn=ConsumableKeyEvent(
+            {
+                "key_code": "t",
+                "modifiers": {
+                    "mandatory": [
+                        MODIFIER_KEYS.control,
+                    ]
+                },
+            }
+        ),
     ),
     emacs_utils_keymap=EmacsUtilsKeymap[ConsumableKeyEvent](
         mode_switch_general_extend=ConsumableKeyEvent(
@@ -654,6 +664,11 @@ STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
             "modifiers": [
                 MODIFIER_KEYS.command,
             ],
+        }
+    ),
+    peek_type_defn=ProducibleKeyEvent(
+        {
+            "key_code": "f4",
         }
     ),
 )
