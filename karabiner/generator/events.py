@@ -49,6 +49,7 @@ class StdIdeKeymap(Generic[KeyEvent]):
 
     action_search: KeyEvent
     rerun: KeyEvent
+    format_file: KeyEvent
 
     # # select_next_match: KeyEvent
 
@@ -481,6 +482,16 @@ STDEmacsKeyEvents = EmacsKeymap(
                 },
             }
         ),
+        format_file=ConsumableKeyEvent(
+            {
+                "key_code": "f",
+                "modifiers": {
+                    "mandatory": [
+                        MODIFIER_KEYS.control,
+                    ]
+                },
+            }
+        ),
     ),
     emacs_utils_keymap=EmacsUtilsKeymap[ConsumableKeyEvent](
         mode_switch_general_extend=ConsumableKeyEvent(
@@ -525,7 +536,7 @@ STDEmacsKeyEvents = EmacsKeymap(
 # 1) The keybinds do not conflict with key events we try to consume (to avoid produce-consume loops)
 # 2) The keybinds are sensibly complete for the StdIdeKeymap
 # 3) The keybinds are much used - meaning there is probably a keymap plugin for it in mainstream IDEs
-# Also considered IntelliJ keymap as default but it has a few more holes and is probably less supported by plugins. 
+# Also considered IntelliJ keymap as default but it has a few more holes and is probably less supported by plugins.
 STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
     action_search=ProducibleKeyEvent(
         {
@@ -539,6 +550,15 @@ STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
     rerun=ProducibleKeyEvent(
         {
             "key_code": "f1",
+        }
+    ),
+    format_file=ProducibleKeyEvent(
+        {
+            "key_code": "f",
+            "modifiers": [
+                MODIFIER_KEYS.option,
+                MODIFIER_KEYS.shift,
+            ],
         }
     ),
 )

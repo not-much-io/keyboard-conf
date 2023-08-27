@@ -547,6 +547,22 @@ modifications += [
             },
         ],
     ),
+    Modification(
+        description="Emacs Mode: Mode Specific: Format",
+        manipulators=[
+            {
+                "type": "basic",
+                "conditions": [
+                    Utils.is_emacs_mode_mode_specific
+                ],
+                "from": STDEmacsKeyEvents.std_ide_keymap.format_file,
+                "to": [
+                    STDIdeKeyEvents.format_file,
+                    Utils.clear_emacs_mode,
+                ],
+            },
+        ],
+    ),
 ]
 
 # Define the select mode modifications
