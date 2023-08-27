@@ -910,6 +910,43 @@
                         ]
                     },
                     {
+                        "description": "Find File",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "C-x"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "p",
+                                        "modifiers": [
+                                            "right_command"
+                                        ]
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "emacs_mode",
+                                            "value": "none"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         "description": "Emacs Mode: Mode Specific",
                         "manipulators": [
                             {

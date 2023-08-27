@@ -543,6 +543,22 @@ modifications += [
         ],
     ),
     Modification(
+        description="Find File",
+        manipulators=[
+            {
+                "type": "basic",
+                "conditions": [
+                    Utils.is_emacs_mode_general_extend
+                ],
+                "from": STDEmacsKeyEvents.std_ide_keymap.find_file,
+                "to": [
+                    STDIdeKeyEvents.find_file,
+                    Utils.clear_emacs_mode,
+                ],
+            },
+        ],
+    ),
+    Modification(
         description="Emacs Mode: Mode Specific",
         manipulators=[
             {
