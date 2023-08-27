@@ -1,11 +1,12 @@
 # My personal keyboard configuration
 
 STATUS: Actively iterating
+DISCLAIMER: Just for my use, not intended to be generic.
 
 In short:
 
 ```text
-"I go clickidy clack" -consumable_key_events-> karabiner -producible_key_events-> "system go brrr"
+"go clickidy clack" -consumable_key_events-> karabiner -producible_key_events-> "system go brrr"
 ```
 
 ## Why?
@@ -18,8 +19,16 @@ Because there is no real wholistic rhyme or reason to them and many actions do n
 
 However I DO use:
 
-* Emacs keybindings as SOURCE keybinds that karabiner will consume to produce a standard set of keybinds.
-* MacOS and VSCode keybindings as TARGET keybinds that karabiner will produce. Although I need to enhance the standard set to get the functionality I want.
+* A standard set of SOURCE keybinds based on emacs standard keybinds or semantic addition that karabiner CONSUMES
+  * note: this is the only user facing set I use
+* A standard set of TARGET keybind based on MacOS and VSCode standard keybinds or semantic addition that karabiner PRODUCES
+  * note: these are just implementation details. The user does not need to know them.
+
+### Why not configure applications with plugins or configuration options?
+
+Because that is a lot of configuration to manage if doing myself and plugins are often implemented incompletely, inconsistently or what they implement does not match my requirements.
+
+Via this project all configuration is in one place and I can easily manage it.
 
 ## How?
 
@@ -28,3 +37,14 @@ However I DO use:
                                          -std_vscode_producible_key_events-> ide_actions (e.g. find references, rerun task, search actions etc.)
                                          -custom_ide_keybinds_key_events-----^
 ```
+
+### From scratch setup
+
+1. Install karabiner
+2. `make karabiner-install`
+3. On any editor install a vscode keybind extension (e.g. I used the VSCode keymap extension in Intellij)
+
+At this point most keybinds will work out of the box.
+
+To get full feature set need to add some keybinds outside the standard set in VSCode. See vscode/keybindings.json for those.
+And depending on how well the VSCode keymap extension is implemented for any editor may need to add some keybinds there aswell.
