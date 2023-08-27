@@ -8,7 +8,7 @@ from generator.modification_utils import (
 )
 from generator.events import (
     STD_EMACS_KEYBIND_EVENTS,
-    STD_MACOS_KEYBIND_EVENTS,
+    STDMacOSKeyEvents,
     STD_KEYS,
     MODIFIER_KEYS,
 )
@@ -246,9 +246,7 @@ modifications += [
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
                 "from": STD_EMACS_KEYBIND_EVENTS.word_forward,
-                "to": [
-                    STD_MACOS_KEYBIND_EVENTS.word_forward
-                ],
+                "to": [STDMacOSKeyEvents.word_forward],
             },
         ],
     ),
@@ -259,9 +257,7 @@ modifications += [
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
                 "from": STD_EMACS_KEYBIND_EVENTS.word_backward,
-                "to": [
-                    STD_MACOS_KEYBIND_EVENTS.word_backward
-                ],
+                "to": [STDMacOSKeyEvents.word_backward],
             },
         ],
     ),
@@ -272,7 +268,7 @@ modifications += [
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
                 "from": STD_EMACS_KEYBIND_EVENTS.line_start,
-                "to": [STD_MACOS_KEYBIND_EVENTS.line_start],
+                "to": [STDMacOSKeyEvents.line_start],
             },
         ],
     ),
@@ -283,7 +279,7 @@ modifications += [
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
                 "from": STD_EMACS_KEYBIND_EVENTS.line_end,
-                "to": [STD_MACOS_KEYBIND_EVENTS.line_end],
+                "to": [STDMacOSKeyEvents.line_end],
             },
         ],
     ),
@@ -294,7 +290,7 @@ modifications += [
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
                 "from": STD_EMACS_KEYBIND_EVENTS.page_down,
-                "to": [STD_MACOS_KEYBIND_EVENTS.page_down],
+                "to": [STDMacOSKeyEvents.page_down],
             },
         ],
     ),
@@ -305,7 +301,7 @@ modifications += [
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
                 "from": STD_EMACS_KEYBIND_EVENTS.page_up,
-                "to": [STD_MACOS_KEYBIND_EVENTS.page_up],
+                "to": [STDMacOSKeyEvents.page_up],
             },
         ],
     ),
@@ -316,7 +312,7 @@ modifications += [
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
                 "from": STD_EMACS_KEYBIND_EVENTS.file_start,
-                "to": [STD_MACOS_KEYBIND_EVENTS.file_start],
+                "to": [STDMacOSKeyEvents.file_start],
             },
         ],
     ),
@@ -327,7 +323,7 @@ modifications += [
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
                 "from": STD_EMACS_KEYBIND_EVENTS.file_end,
-                "to": [STD_MACOS_KEYBIND_EVENTS.file_end],
+                "to": [STDMacOSKeyEvents.file_end],
             },
         ],
     ),
@@ -339,7 +335,7 @@ modifications += [
                 "from": STD_EMACS_KEYBIND_EVENTS.wipe,
                 "to": [
                     # Emulating cut as real cut through Command + X will be taken by Emacs "action search"
-                    STD_MACOS_KEYBIND_EVENTS.copy,
+                    STDMacOSKeyEvents.copy,
                     STD_KEYS.backspace,
                     # Very often used together with select mode, so clearing select mode here also
                     Utils.set_select_mode_off,
@@ -353,7 +349,7 @@ modifications += [
             {
                 "type": "basic",
                 "from": STD_EMACS_KEYBIND_EVENTS.yank,
-                "to": [STD_MACOS_KEYBIND_EVENTS.paste],
+                "to": [STDMacOSKeyEvents.paste],
             },
         ],
     ),
@@ -364,7 +360,7 @@ modifications += [
             {
                 "type": "basic",
                 "from": STD_EMACS_KEYBIND_EVENTS.undo,
-                "to": [STD_MACOS_KEYBIND_EVENTS.undo],
+                "to": [STDMacOSKeyEvents.undo],
             },
         ],
     ),
@@ -374,7 +370,7 @@ modifications += [
             {
                 "type": "basic",
                 "from": STD_EMACS_KEYBIND_EVENTS.redo,
-                "to": [STD_MACOS_KEYBIND_EVENTS.redo],
+                "to": [STDMacOSKeyEvents.redo],
             },
         ],
     ),
@@ -387,9 +383,7 @@ modifications += [
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
                 "from": STD_EMACS_KEYBIND_EVENTS.delete_word_backward,
-                "to": [
-                    STD_MACOS_KEYBIND_EVENTS.delete_word_backward
-                ],
+                "to": [STDMacOSKeyEvents.delete_word_backward],
             },
         ],
     ),
@@ -411,9 +405,7 @@ modifications += [
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
                 "from": STD_EMACS_KEYBIND_EVENTS.delete_word_forward,
-                "to": [
-                    STD_MACOS_KEYBIND_EVENTS.delete_word_forward
-                ],
+                "to": [STDMacOSKeyEvents.delete_word_forward],
             },
         ],
     ),
@@ -439,7 +431,7 @@ modifications += [
                 "conditions": [Utils.is_emacs_mode_none],
                 "from": STD_EMACS_KEYBIND_EVENTS.find_in_view,
                 "to": [
-                    STD_MACOS_KEYBIND_EVENTS.find_in_view,
+                    STDMacOSKeyEvents.find_in_view,
                     Utils.clear_emacs_mode,
                 ],
             },
@@ -469,7 +461,7 @@ modifications += [
                 ],
                 "from": STD_EMACS_KEYBIND_EVENTS.select_all,
                 "to": [
-                    STD_MACOS_KEYBIND_EVENTS.select_all,
+                    STDMacOSKeyEvents.select_all,
                     Utils.clear_emacs_mode,
                 ],
             },
@@ -485,7 +477,7 @@ modifications += [
                 ],
                 "from": STD_EMACS_KEYBIND_EVENTS.save,
                 "to": [
-                    STD_MACOS_KEYBIND_EVENTS.save,
+                    STDMacOSKeyEvents.save,
                     Utils.clear_emacs_mode,
                 ],
             },

@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List
+from typing import List, Generic, TypeVar, Union
 from .event_utils import (
     ProducibleKeyEvent,
     ConsumableKeyEvent,
@@ -45,66 +45,176 @@ class STD_KEYS:
     )
 
 
-class STD_MACOS_KEYBIND_EVENTS:
-    """There default keybinds are:
-    1) Set by default on a fresh MacOS install
-    2) Are implemented system wide or at least in most applications
-    These are generic keybinds that are not specific to any application.
+KeyEvent = TypeVar(
+    "KeyEvent",
+    bound=Union[ProducibleKeyEvent, ConsumableKeyEvent],
+)
 
-    NOTE: These are producible key events as we only produce MacOS key events and should never consume them.
-    """
 
-    line_start = ProducibleKeyEvent(
+@dataclass
+class OsLevelKeymap(Generic[KeyEvent]):
+    """These key events are relevant OS wide (vs. just in a specific application)"""
+
+    up: KeyEvent
+    down: KeyEvent
+    left: KeyEvent
+    right: KeyEvent
+    esc: KeyEvent
+    backspace: KeyEvent
+    delete: KeyEvent
+
+    line_start: KeyEvent
+    line_end: KeyEvent
+    file_start: KeyEvent
+    file_end: KeyEvent
+    copy: KeyEvent
+    paste: KeyEvent
+    undo: KeyEvent
+    redo: KeyEvent
+    find_in_view: KeyEvent
+    page_down: KeyEvent
+    page_up: KeyEvent
+    word_forward: KeyEvent
+    word_backward: KeyEvent
+    delete_word_backward: KeyEvent
+    delete_word_forward: KeyEvent
+    select_all: KeyEvent
+    save: KeyEvent
+
+
+@dataclass
+class StdIdeKeymap(Generic[KeyEvent]):
+    """These key events are relevant to IDEs specifically"""
+
+    select_next_match: KeyEvent
+
+    run_shell_cmd: KeyEvent
+    show_recent_files: KeyEvent
+    toggle_type_annotations: KeyEvent
+    master_search: KeyEvent
+
+    peek_type_defn: KeyEvent
+    rerun: KeyEvent
+    pane_split_vertical: KeyEvent
+    pane_split_horizontal: KeyEvent
+    pane_next: KeyEvent
+    pane_close: KeyEvent
+
+    find_usages: KeyEvent
+    go_back: KeyEvent
+    toggle_comment: KeyEvent
+    format_file: KeyEvent
+    find_file: KeyEvent
+    find_in_files: KeyEvent
+
+
+@dataclass
+class EmacsUtilsKeymap(Generic[KeyEvent]):
+    """These key events are used as utilities to implement Emacs keybinds"""
+
+    mode_switch_general_extend: ConsumableKeyEvent
+    select_mode_toggle: ConsumableKeyEvent
+
+
+@dataclass
+class EmacsKeymap(
+    OsLevelKeymap[ConsumableKeyEvent],
+    # StdIdeKeymap[ConsumableKeyEvent],
+    EmacsUtilsKeymap[ConsumableKeyEvent],
+):
+    """These key events are relevant to Emacs specifically"""
+
+# There default keybinds are:
+# 1) Set by default on a fresh MacOS install
+# 2) Are implemented system wide or at least in most applications
+# These are generic keybinds that are not specific to any application.
+STDMacOSKeyEvents = OsLevelKeymap[ProducibleKeyEvent](
+    up=ProducibleKeyEvent(
+        {
+            "key_code": SPECIFIC_KEYS.up,
+        }
+    ),
+    down=ProducibleKeyEvent(
+        {
+            "key_code": SPECIFIC_KEYS.down,
+        }
+    ),
+    left=ProducibleKeyEvent(
+        {
+            "key_code": SPECIFIC_KEYS.left,
+        }
+    ),
+    right=ProducibleKeyEvent(
+        {
+            "key_code": SPECIFIC_KEYS.right,
+        }
+    ),
+    esc=ProducibleKeyEvent(
+        {
+            "key_code": SPECIFIC_KEYS.esc,
+        }
+    ),
+    backspace=ProducibleKeyEvent(
+        {
+            "key_code": SPECIFIC_KEYS.backspace,
+        }
+    ),
+    delete=ProducibleKeyEvent(
+        {
+            "key_code": SPECIFIC_KEYS.delete,
+        }
+    ),
+    line_start=ProducibleKeyEvent(
         {
             "key_code": SPECIFIC_KEYS.left,
             "modifiers": [
                 MODIFIER_KEYS.command,
             ],
         }
-    )
-    line_end = ProducibleKeyEvent(
+    ),
+    line_end=ProducibleKeyEvent(
         {
             "key_code": SPECIFIC_KEYS.right,
             "modifiers": [
                 MODIFIER_KEYS.command,
             ],
         }
-    )
-    file_start = ProducibleKeyEvent(
+    ),
+    file_start=ProducibleKeyEvent(
         {
             "key_code": SPECIFIC_KEYS.up,
             "modifiers": [
                 MODIFIER_KEYS.command,
             ],
         }
-    )
-    file_end = ProducibleKeyEvent(
+    ),
+    file_end=ProducibleKeyEvent(
         {
             "key_code": SPECIFIC_KEYS.down,
             "modifiers": [
                 MODIFIER_KEYS.command,
             ],
         }
-    )
-    copy = ProducibleKeyEvent(
+    ),
+    copy=ProducibleKeyEvent(
         {
             "key_code": "c",
             "modifiers": [MODIFIER_KEYS.command],
         }
-    )
-    paste = ProducibleKeyEvent(
+    ),
+    paste=ProducibleKeyEvent(
         {
             "key_code": "v",
             "modifiers": [MODIFIER_KEYS.command],
         }
-    )
-    undo = ProducibleKeyEvent(
+    ),
+    undo=ProducibleKeyEvent(
         {
             "key_code": "z",
             "modifiers": [MODIFIER_KEYS.command],
         }
-    )
-    redo = ProducibleKeyEvent(
+    ),
+    redo=ProducibleKeyEvent(
         {
             "key_code": "z",
             "modifiers": [
@@ -112,8 +222,8 @@ class STD_MACOS_KEYBIND_EVENTS:
                 MODIFIER_KEYS.shift,
             ],
         }
-    )
-    find_in_view = ProducibleKeyEvent(
+    ),
+    find_in_view=ProducibleKeyEvent(
         {
             "key_code": "f",
             "modifiers": [
@@ -122,38 +232,38 @@ class STD_MACOS_KEYBIND_EVENTS:
                 MODIFIER_KEYS.left_command
             ],
         }
-    )
-    page_down = ProducibleKeyEvent(
+    ),
+    page_down=ProducibleKeyEvent(
         {
             "key_code": SPECIFIC_KEYS.down,
             "modifiers": [MODIFIER_KEYS.fn],
         }
-    )
-    page_up = ProducibleKeyEvent(
+    ),
+    page_up=ProducibleKeyEvent(
         {
             "key_code": SPECIFIC_KEYS.up,
             "modifiers": [MODIFIER_KEYS.fn],
         }
-    )
-    word_forward = ProducibleKeyEvent(
+    ),
+    word_forward=ProducibleKeyEvent(
         {
             "key_code": SPECIFIC_KEYS.right,
             "modifiers": [MODIFIER_KEYS.option],
         }
-    )
-    word_backward = ProducibleKeyEvent(
+    ),
+    word_backward=ProducibleKeyEvent(
         {
             "key_code": SPECIFIC_KEYS.left,
             "modifiers": [MODIFIER_KEYS.option],
         }
-    )
-    delete_word_backward = ProducibleKeyEvent(
+    ),
+    delete_word_backward=ProducibleKeyEvent(
         {
             "key_code": SPECIFIC_KEYS.backspace,
             "modifiers": [MODIFIER_KEYS.option],
         }
-    )
-    delete_word_forward = ProducibleKeyEvent(
+    ),
+    delete_word_forward=ProducibleKeyEvent(
         {
             "key_code": SPECIFIC_KEYS.delete,
             "modifiers": [
@@ -161,19 +271,262 @@ class STD_MACOS_KEYBIND_EVENTS:
                 MODIFIER_KEYS.fn,
             ],
         }
-    )
-    select_all = ProducibleKeyEvent(
+    ),
+    select_all=ProducibleKeyEvent(
         {
             "key_code": "a",
             "modifiers": [MODIFIER_KEYS.command],
         }
-    )
-    save = ProducibleKeyEvent(
+    ),
+    save=ProducibleKeyEvent(
         {
             "key_code": "s",
             "modifiers": [MODIFIER_KEYS.command],
         }
-    )
+    ),
+)
+
+
+STDEmacsKeyEvents = EmacsKeymap(
+    up=ConsumableKeyEvent(
+        {
+            "key_code": "p",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.control]
+            },
+        }
+    ),
+    down=ConsumableKeyEvent(
+        {
+            "key_code": "n",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.control]
+            },
+        }
+    ),
+    left=ConsumableKeyEvent(
+        {
+            "key_code": "b",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.control]
+            },
+        }
+    ),
+    right=ConsumableKeyEvent(
+        {
+            "key_code": "f",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.control]
+            },
+        }
+    ),
+    word_forward=ConsumableKeyEvent(
+        {
+            "key_code": "f",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.command]
+            },
+        }
+    ),
+    word_backward=ConsumableKeyEvent(
+        {
+            "key_code": "b",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.command]
+            },
+        }
+    ),
+    line_start=ConsumableKeyEvent(
+        {
+            "key_code": "a",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.control]
+            },
+        }
+    ),
+    line_end=ConsumableKeyEvent(
+        {
+            "key_code": "e",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.control]
+            },
+        }
+    ),
+    page_up=ConsumableKeyEvent(
+        {
+            "key_code": "v",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.command]
+            },
+        }
+    ),
+    page_down=ConsumableKeyEvent(
+        {
+            "key_code": "v",
+            "modifiers": {
+                "mandatory": [
+                    MODIFIER_KEYS.control,
+                ]
+            },
+        }
+    ),
+    file_start=ConsumableKeyEvent(
+        {
+            "key_code": "<",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.control]
+            },
+        }
+    ),
+    file_end=ConsumableKeyEvent(
+        {
+            "key_code": ">",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.control]
+            },
+        }
+    ),
+    copy=ConsumableKeyEvent(
+        {
+            "key_code": "w",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.control]
+            },
+        }
+    ),
+    paste=ConsumableKeyEvent(
+        {
+            "key_code": "y",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.control]
+            },
+        }
+    ),
+    undo=ConsumableKeyEvent(
+        {
+            "key_code": "_",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.control]
+            },
+        }
+    ),
+    redo=ConsumableKeyEvent(
+        {
+            "key_code": "-",
+            "modifiers": {
+                "mandatory": [
+                    MODIFIER_KEYS.control,
+                ]
+            },
+        }
+    ),
+    delete=ConsumableKeyEvent(
+        {
+            "key_code": "d",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.control]
+            },
+        }
+    ),
+    delete_word_backward=ConsumableKeyEvent(
+        {
+            "key_code": SPECIFIC_KEYS.backspace,
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.command]
+            },
+        }
+    ),
+    delete_word_forward=ConsumableKeyEvent(
+        {
+            "key_code": "d",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.command]
+            },
+        }
+    ),
+    backspace=ConsumableKeyEvent(
+        {
+            "key_code": "h",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.control]
+            },
+        }
+    ),
+    esc=ConsumableKeyEvent(
+        {
+            "key_code": "g",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.control]
+            },
+        }
+    ),
+    find_in_view=ConsumableKeyEvent(
+        {
+            "key_code": "s",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.control]
+            },
+        }
+    ),
+    mode_switch_general_extend=ConsumableKeyEvent(
+        {
+            "key_code": "x",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.control]
+            },
+        }
+    ),
+    select_all=ConsumableKeyEvent(
+        {
+            "key_code": "h",
+        }
+    ),
+    save=ConsumableKeyEvent(
+        {
+            "key_code": "s",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.control]
+            },
+        }
+    ),
+    select_mode_toggle=ConsumableKeyEvent(
+        {
+            "key_code": "spacebar",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.control]
+            },
+        }
+    ),
+
+
+    # ###
+    # # Generally application specific
+    # ###
+    # find_usages=ConsumableKeyEvent(
+    #     {
+    #         "key_code": ".",
+    #         "modifiers": {
+    #             "mandatory": [MODIFIER_KEYS.control]
+    #         },
+    #     }
+    # ),
+    # go_back=ConsumableKeyEvent(
+    #     {
+    #         "key_code": ",",
+    #         "modifiers": {
+    #             "mandatory": [MODIFIER_KEYS.control]
+    #         },
+    #     }
+    # ),
+    # toggle_comment=ConsumableKeyEvent(
+    #     {
+    #         "key_code": ";",
+    #         "modifiers": {
+    #             "mandatory": [MODIFIER_KEYS.control]
+    #         },
+    #     }
+    # ),
+)
 
 
 class STD_EMACS_KEYBIND_EVENTS:
@@ -464,25 +817,30 @@ class STD_TABULAR_APPLICATION_KEYBIND_EVENTS:
 
 
 @dataclass
-class EDITOR_KEYMAP:
-    run_shell_cmd: ProducibleKeyEvent
-    show_recent_files: ProducibleKeyEvent
-    toggle_type_annotations: ProducibleKeyEvent
-    master_search: ProducibleKeyEvent
+class NMIO_STD_EDITOR_KEYMAP(Generic[KeyEvent]):
+    select_next_match: KeyEvent
 
-    peek_type_defn: ProducibleKeyEvent
-    rerun: ProducibleKeyEvent
-    pane_split_vertical: ProducibleKeyEvent
-    pane_split_horizontal: ProducibleKeyEvent
-    pane_next: ProducibleKeyEvent
-    pane_close: ProducibleKeyEvent
+    run_shell_cmd: KeyEvent
+    show_recent_files: KeyEvent
+    toggle_type_annotations: KeyEvent
+    master_search: KeyEvent
 
-    find_usages: ProducibleKeyEvent
-    go_back: ProducibleKeyEvent
-    toggle_comment: ProducibleKeyEvent
-    format_file: ProducibleKeyEvent
-    find_file: ProducibleKeyEvent
-    find_in_files: ProducibleKeyEvent
+    peek_type_defn: KeyEvent
+    rerun: KeyEvent
+    pane_split_vertical: KeyEvent
+    pane_split_horizontal: KeyEvent
+    pane_next: KeyEvent
+    pane_close: KeyEvent
+
+    find_usages: KeyEvent
+    go_back: KeyEvent
+    toggle_comment: KeyEvent
+    format_file: KeyEvent
+    find_file: KeyEvent
+    find_in_files: KeyEvent
+
+
+# VsCodeKeymap = NMIO_STD_EDITOR_KEYMAP[ProducibleKeyEvent]()
 
 
 class STD_VSCODE_KEYBIND_EVENTS:
