@@ -51,6 +51,7 @@ class StdIdeKeymap(Generic[KeyEvent]):
     rerun: KeyEvent
     format_file: KeyEvent
     find_references: KeyEvent
+    go_back: KeyEvent
 
     # # select_next_match: KeyEvent
 
@@ -65,10 +66,7 @@ class StdIdeKeymap(Generic[KeyEvent]):
     # pane_next: KeyEvent
     # pane_close: KeyEvent
 
-    # find_usages: KeyEvent
-    # go_back: KeyEvent
     # toggle_comment: KeyEvent
-    # format_file: KeyEvent
     # find_file: KeyEvent
     # find_in_files: KeyEvent
 
@@ -503,6 +501,16 @@ STDEmacsKeyEvents = EmacsKeymap(
                 },
             }
         ),
+        go_back=ConsumableKeyEvent(
+            {
+                "key_code": ",",
+                "modifiers": {
+                    "mandatory": [
+                        MODIFIER_KEYS.control,
+                    ]
+                },
+            }
+        ),
     ),
     emacs_utils_keymap=EmacsUtilsKeymap[ConsumableKeyEvent](
         mode_switch_general_extend=ConsumableKeyEvent(
@@ -577,6 +585,14 @@ STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
             "key_code": "f12",
             "modifiers": [
                 MODIFIER_KEYS.shift,
+            ],
+        }
+    ),
+    go_back=ProducibleKeyEvent(
+        {
+            "key_code": "-",
+            "modifiers": [
+                MODIFIER_KEYS.control,
             ],
         }
     ),

@@ -776,6 +776,30 @@
                         ]
                     },
                     {
+                        "description": "Go back",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "hyphen",
+                                        "modifiers": [
+                                            "right_control"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         "description": "Emacs Mode: General Extend",
                         "manipulators": [
                             {

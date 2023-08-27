@@ -485,6 +485,18 @@ modifications += [
         ],
     ),
     Modification(
+        description="Go back",
+        manipulators=[
+            {
+                "type": "basic",
+                "from": STDEmacsKeyEvents.std_ide_keymap.go_back,
+                "to": [
+                    STDIdeKeyEvents.go_back,
+                ],
+            },
+        ],
+    ),
+    Modification(
         description="Emacs Mode: General Extend",
         manipulators=[
             {
