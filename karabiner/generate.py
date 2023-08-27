@@ -7,9 +7,8 @@ from generator.modification_utils import (
     ToDelayedAction,
 )
 from generator.events import (
-    STD_EMACS_KEYBIND_EVENTS,
+    STDEmacsKeyEvents,
     STDMacOSKeyEvents,
-    STD_KEYS,
     MODIFIER_KEYS,
 )
 import json
@@ -201,8 +200,8 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
-                "from": STD_EMACS_KEYBIND_EVENTS.up,
-                "to": [STD_KEYS.up],
+                "from": STDEmacsKeyEvents.os_level_keymap.up,
+                "to": [STDMacOSKeyEvents.up],
             },
         ],
     ),
@@ -212,8 +211,8 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
-                "from": STD_EMACS_KEYBIND_EVENTS.down,
-                "to": [STD_KEYS.down],
+                "from": STDEmacsKeyEvents.os_level_keymap.down,
+                "to": [STDMacOSKeyEvents.down],
             },
         ],
     ),
@@ -223,8 +222,8 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
-                "from": STD_EMACS_KEYBIND_EVENTS.left,
-                "to": [STD_KEYS.left],
+                "from": STDEmacsKeyEvents.os_level_keymap.left,
+                "to": [STDMacOSKeyEvents.left],
             },
         ],
     ),
@@ -234,8 +233,8 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
-                "from": STD_EMACS_KEYBIND_EVENTS.right,
-                "to": [STD_KEYS.right],
+                "from": STDEmacsKeyEvents.os_level_keymap.right,
+                "to": [STDMacOSKeyEvents.right],
             },
         ],
     ),
@@ -245,7 +244,7 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
-                "from": STD_EMACS_KEYBIND_EVENTS.word_forward,
+                "from": STDEmacsKeyEvents.os_level_keymap.word_forward,
                 "to": [STDMacOSKeyEvents.word_forward],
             },
         ],
@@ -256,7 +255,7 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
-                "from": STD_EMACS_KEYBIND_EVENTS.word_backward,
+                "from": STDEmacsKeyEvents.os_level_keymap.word_backward,
                 "to": [STDMacOSKeyEvents.word_backward],
             },
         ],
@@ -267,7 +266,7 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
-                "from": STD_EMACS_KEYBIND_EVENTS.line_start,
+                "from": STDEmacsKeyEvents.os_level_keymap.line_start,
                 "to": [STDMacOSKeyEvents.line_start],
             },
         ],
@@ -278,7 +277,7 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
-                "from": STD_EMACS_KEYBIND_EVENTS.line_end,
+                "from": STDEmacsKeyEvents.os_level_keymap.line_end,
                 "to": [STDMacOSKeyEvents.line_end],
             },
         ],
@@ -289,7 +288,7 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
-                "from": STD_EMACS_KEYBIND_EVENTS.page_down,
+                "from": STDEmacsKeyEvents.os_level_keymap.page_down,
                 "to": [STDMacOSKeyEvents.page_down],
             },
         ],
@@ -300,7 +299,7 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
-                "from": STD_EMACS_KEYBIND_EVENTS.page_up,
+                "from": STDEmacsKeyEvents.os_level_keymap.page_up,
                 "to": [STDMacOSKeyEvents.page_up],
             },
         ],
@@ -311,7 +310,7 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
-                "from": STD_EMACS_KEYBIND_EVENTS.file_start,
+                "from": STDEmacsKeyEvents.os_level_keymap.file_start,
                 "to": [STDMacOSKeyEvents.file_start],
             },
         ],
@@ -322,7 +321,7 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
-                "from": STD_EMACS_KEYBIND_EVENTS.file_end,
+                "from": STDEmacsKeyEvents.os_level_keymap.file_end,
                 "to": [STDMacOSKeyEvents.file_end],
             },
         ],
@@ -332,11 +331,11 @@ modifications += [
         manipulators=[
             {
                 "type": "basic",
-                "from": STD_EMACS_KEYBIND_EVENTS.cut,
+                "from": STDEmacsKeyEvents.emacs_uniques_keymap.cut,
                 "to": [
                     # Emulating cut as real cut through Command + X will be taken by Emacs "action search"
                     STDMacOSKeyEvents.copy,
-                    STD_KEYS.backspace,
+                    STDMacOSKeyEvents.backspace,
                     # Very often used together with select mode, so clearing select mode here also
                     Utils.set_select_mode_off,
                 ],
@@ -348,7 +347,7 @@ modifications += [
         manipulators=[
             {
                 "type": "basic",
-                "from": STD_EMACS_KEYBIND_EVENTS.paste,
+                "from": STDEmacsKeyEvents.os_level_keymap.paste,
                 "to": [STDMacOSKeyEvents.paste],
             },
         ],
@@ -359,7 +358,7 @@ modifications += [
         manipulators=[
             {
                 "type": "basic",
-                "from": STD_EMACS_KEYBIND_EVENTS.undo,
+                "from": STDEmacsKeyEvents.os_level_keymap.undo,
                 "to": [STDMacOSKeyEvents.undo],
             },
         ],
@@ -369,7 +368,7 @@ modifications += [
         manipulators=[
             {
                 "type": "basic",
-                "from": STD_EMACS_KEYBIND_EVENTS.redo,
+                "from": STDEmacsKeyEvents.os_level_keymap.redo,
                 "to": [STDMacOSKeyEvents.redo],
             },
         ],
@@ -382,8 +381,10 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
-                "from": STD_EMACS_KEYBIND_EVENTS.delete_word_backward,
-                "to": [STDMacOSKeyEvents.delete_word_backward],
+                "from": STDEmacsKeyEvents.os_level_keymap.delete_word_backward,
+                "to": [
+                    STDMacOSKeyEvents.delete_word_backward
+                ],
             },
         ],
     ),
@@ -393,8 +394,8 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
-                "from": STD_EMACS_KEYBIND_EVENTS.delete,
-                "to": [STD_KEYS.delete],
+                "from": STDEmacsKeyEvents.os_level_keymap.delete,
+                "to": [STDMacOSKeyEvents.delete],
             },
         ],
     ),
@@ -404,8 +405,10 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
-                "from": STD_EMACS_KEYBIND_EVENTS.delete_word_forward,
-                "to": [STDMacOSKeyEvents.delete_word_forward],
+                "from": STDEmacsKeyEvents.os_level_keymap.delete_word_forward,
+                "to": [
+                    STDMacOSKeyEvents.delete_word_forward
+                ],
             },
         ],
     ),
@@ -414,9 +417,9 @@ modifications += [
         manipulators=[
             {
                 "type": "basic",
-                "from": STD_EMACS_KEYBIND_EVENTS.esc,
+                "from": STDEmacsKeyEvents.os_level_keymap.esc,
                 "to": [
-                    STD_KEYS.esc,
+                    STDMacOSKeyEvents.esc,
                     Utils.clear_emacs_mode,
                     Utils.set_select_mode_off,
                 ],
@@ -429,7 +432,7 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
-                "from": STD_EMACS_KEYBIND_EVENTS.find_in_view,
+                "from": STDEmacsKeyEvents.os_level_keymap.find_in_view,
                 "to": [
                     STDMacOSKeyEvents.find_in_view,
                     Utils.clear_emacs_mode,
@@ -443,7 +446,7 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_emacs_mode_none],
-                "from": STD_EMACS_KEYBIND_EVENTS.mode_switch_general_extend,
+                "from": STDEmacsKeyEvents.emacs_utils_keymap.mode_switch_general_extend,
                 "to": [
                     Utils.set_emacs_mode_general_extend,
                 ],
@@ -459,7 +462,7 @@ modifications += [
                 "conditions": [
                     Utils.is_emacs_mode_general_extend
                 ],
-                "from": STD_EMACS_KEYBIND_EVENTS.select_all,
+                "from": STDEmacsKeyEvents.os_level_keymap.select_all,
                 "to": [
                     STDMacOSKeyEvents.select_all,
                     Utils.clear_emacs_mode,
@@ -475,7 +478,7 @@ modifications += [
                 "conditions": [
                     Utils.is_emacs_mode_general_extend
                 ],
-                "from": STD_EMACS_KEYBIND_EVENTS.save,
+                "from": STDEmacsKeyEvents.os_level_keymap.save,
                 "to": [
                     STDMacOSKeyEvents.save,
                     Utils.clear_emacs_mode,
@@ -493,7 +496,7 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_select_mode_off],
-                "from": STD_EMACS_KEYBIND_EVENTS.select_mode_toggle,
+                "from": STDEmacsKeyEvents.emacs_utils_keymap.select_mode_toggle,
                 "to": [Utils.set_select_mode_on],
             },
         ],
@@ -504,11 +507,11 @@ modifications += [
             {
                 "type": "basic",
                 "conditions": [Utils.is_select_mode_on],
-                "from": STD_EMACS_KEYBIND_EVENTS.select_mode_toggle,
+                "from": STDEmacsKeyEvents.emacs_utils_keymap.select_mode_toggle,
                 "to": [
                     Utils.set_select_mode_off,
                     # clearing whatever is currently selected if any
-                    STD_KEYS.esc,
+                    STDMacOSKeyEvents.esc,
                 ],
             },
         ],

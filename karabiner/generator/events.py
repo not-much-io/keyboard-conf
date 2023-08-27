@@ -6,45 +6,6 @@ from .event_utils import (
 )
 from .keys import MODIFIER_KEYS, SPECIFIC_KEYS
 
-
-class STD_KEYS:
-    up = ProducibleKeyEvent(
-        {
-            "key_code": SPECIFIC_KEYS.up,
-        }
-    )
-    down = ProducibleKeyEvent(
-        {
-            "key_code": SPECIFIC_KEYS.down,
-        }
-    )
-    left = ProducibleKeyEvent(
-        {
-            "key_code": SPECIFIC_KEYS.left,
-        }
-    )
-    right = ProducibleKeyEvent(
-        {
-            "key_code": SPECIFIC_KEYS.right,
-        }
-    )
-    esc = ProducibleKeyEvent(
-        {
-            "key_code": SPECIFIC_KEYS.esc,
-        }
-    )
-    backspace = ProducibleKeyEvent(
-        {
-            "key_code": SPECIFIC_KEYS.backspace,
-        }
-    )
-    delete = ProducibleKeyEvent(
-        {
-            "key_code": SPECIFIC_KEYS.delete,
-        }
-    )
-
-
 KeyEvent = TypeVar(
     "KeyEvent",
     bound=Union[ProducibleKeyEvent, ConsumableKeyEvent],
@@ -86,12 +47,13 @@ class OsLevelKeymap(Generic[KeyEvent]):
 class StdIdeKeymap(Generic[KeyEvent]):
     """These key events are relevant to IDEs specifically"""
 
-    select_next_match: KeyEvent
+    action_search: KeyEvent
+
+    # select_next_match: KeyEvent
 
     run_shell_cmd: KeyEvent
     show_recent_files: KeyEvent
     toggle_type_annotations: KeyEvent
-    master_search: KeyEvent
 
     peek_type_defn: KeyEvent
     rerun: KeyEvent
@@ -119,15 +81,17 @@ class EmacsUtilsKeymap(Generic[KeyEvent]):
 @dataclass
 class EmacsUniquesKeymap:
     cut: ConsumableKeyEvent
-    
+
+
 @dataclass
-class EmacsKeymap(
-    OsLevelKeymap[ConsumableKeyEvent],
-    # StdIdeKeymap[ConsumableKeyEvent],
-    EmacsUtilsKeymap[ConsumableKeyEvent],
-    EmacsUniquesKeymap,
-):
+class EmacsKeymap:
     """These key events are relevant to Emacs specifically"""
+
+    os_level_keymap: OsLevelKeymap[ConsumableKeyEvent]
+    # std_ide_keymap: StdIdeKeymap[ConsumableKeyEvent]
+    emacs_utils_keymap: EmacsUtilsKeymap[ConsumableKeyEvent]
+    emacs_uniques_keymap: EmacsUniquesKeymap
+
 
 # There default keybinds are:
 # 1) Set by default on a fresh MacOS install
@@ -293,519 +257,235 @@ STDMacOSKeyEvents = OsLevelKeymap[ProducibleKeyEvent](
 
 
 STDEmacsKeyEvents = EmacsKeymap(
-    up=ConsumableKeyEvent(
-        {
-            "key_code": "p",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
+    os_level_keymap=OsLevelKeymap[ConsumableKeyEvent](
+        up=ConsumableKeyEvent(
+            {
+                "key_code": "p",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
+        down=ConsumableKeyEvent(
+            {
+                "key_code": "n",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
+        left=ConsumableKeyEvent(
+            {
+                "key_code": "b",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
+        right=ConsumableKeyEvent(
+            {
+                "key_code": "f",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
+        word_forward=ConsumableKeyEvent(
+            {
+                "key_code": "f",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.command]
+                },
+            }
+        ),
+        word_backward=ConsumableKeyEvent(
+            {
+                "key_code": "b",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.command]
+                },
+            }
+        ),
+        line_start=ConsumableKeyEvent(
+            {
+                "key_code": "a",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
+        line_end=ConsumableKeyEvent(
+            {
+                "key_code": "e",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
+        page_up=ConsumableKeyEvent(
+            {
+                "key_code": "v",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.command]
+                },
+            }
+        ),
+        page_down=ConsumableKeyEvent(
+            {
+                "key_code": "v",
+                "modifiers": {
+                    "mandatory": [
+                        MODIFIER_KEYS.control,
+                    ]
+                },
+            }
+        ),
+        file_start=ConsumableKeyEvent(
+            {
+                "key_code": "<",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
+        file_end=ConsumableKeyEvent(
+            {
+                "key_code": ">",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
+        # We do not really use
+        copy=ConsumableKeyEvent(
+            {
+                "key_code": "w",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.command]
+                },
+            }
+        ),
+        paste=ConsumableKeyEvent(
+            {
+                "key_code": "y",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
+        undo=ConsumableKeyEvent(
+            {
+                "key_code": "_",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
+        redo=ConsumableKeyEvent(
+            {
+                "key_code": "-",
+                "modifiers": {
+                    "mandatory": [
+                        MODIFIER_KEYS.control,
+                    ]
+                },
+            }
+        ),
+        delete=ConsumableKeyEvent(
+            {
+                "key_code": "d",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
+        delete_word_backward=ConsumableKeyEvent(
+            {
+                "key_code": SPECIFIC_KEYS.backspace,
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.command]
+                },
+            }
+        ),
+        delete_word_forward=ConsumableKeyEvent(
+            {
+                "key_code": "d",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.command]
+                },
+            }
+        ),
+        backspace=ConsumableKeyEvent(
+            {
+                "key_code": "h",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
+        esc=ConsumableKeyEvent(
+            {
+                "key_code": "g",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
+        find_in_view=ConsumableKeyEvent(
+            {
+                "key_code": "s",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
+        select_all=ConsumableKeyEvent(
+            {
+                "key_code": "h",
+            }
+        ),
+        save=ConsumableKeyEvent(
+            {
+                "key_code": "s",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
     ),
-    down=ConsumableKeyEvent(
-        {
-            "key_code": "n",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
+    # std_ide_keymap=StdIdeKeymap[ConsumableKeyEvent](
+    emacs_utils_keymap=EmacsUtilsKeymap[ConsumableKeyEvent](
+        mode_switch_general_extend=ConsumableKeyEvent(
+            {
+                "key_code": "x",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
+        select_mode_toggle=ConsumableKeyEvent(
+            {
+                "key_code": "spacebar",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
     ),
-    left=ConsumableKeyEvent(
-        {
-            "key_code": "b",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
+    emacs_uniques_keymap=EmacsUniquesKeymap(
+        cut=ConsumableKeyEvent(
+            {
+                "key_code": "w",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
     ),
-    right=ConsumableKeyEvent(
-        {
-            "key_code": "f",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    ),
-    word_forward=ConsumableKeyEvent(
-        {
-            "key_code": "f",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.command]
-            },
-        }
-    ),
-    word_backward=ConsumableKeyEvent(
-        {
-            "key_code": "b",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.command]
-            },
-        }
-    ),
-    line_start=ConsumableKeyEvent(
-        {
-            "key_code": "a",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    ),
-    line_end=ConsumableKeyEvent(
-        {
-            "key_code": "e",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    ),
-    page_up=ConsumableKeyEvent(
-        {
-            "key_code": "v",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.command]
-            },
-        }
-    ),
-    page_down=ConsumableKeyEvent(
-        {
-            "key_code": "v",
-            "modifiers": {
-                "mandatory": [
-                    MODIFIER_KEYS.control,
-                ]
-            },
-        }
-    ),
-    file_start=ConsumableKeyEvent(
-        {
-            "key_code": "<",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    ),
-    file_end=ConsumableKeyEvent(
-        {
-            "key_code": ">",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    ),
-    # We do not really use
-    copy=ConsumableKeyEvent(
-        {
-            "key_code": "w",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.command]
-            },
-        }
-    ),
-    cut=ConsumableKeyEvent(
-        {
-            "key_code": "w",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    ),
-    paste=ConsumableKeyEvent(
-        {
-            "key_code": "y",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    ),
-    undo=ConsumableKeyEvent(
-        {
-            "key_code": "_",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    ),
-    redo=ConsumableKeyEvent(
-        {
-            "key_code": "-",
-            "modifiers": {
-                "mandatory": [
-                    MODIFIER_KEYS.control,
-                ]
-            },
-        }
-    ),
-    delete=ConsumableKeyEvent(
-        {
-            "key_code": "d",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    ),
-    delete_word_backward=ConsumableKeyEvent(
-        {
-            "key_code": SPECIFIC_KEYS.backspace,
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.command]
-            },
-        }
-    ),
-    delete_word_forward=ConsumableKeyEvent(
-        {
-            "key_code": "d",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.command]
-            },
-        }
-    ),
-    backspace=ConsumableKeyEvent(
-        {
-            "key_code": "h",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    ),
-    esc=ConsumableKeyEvent(
-        {
-            "key_code": "g",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    ),
-    find_in_view=ConsumableKeyEvent(
-        {
-            "key_code": "s",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    ),
-    mode_switch_general_extend=ConsumableKeyEvent(
-        {
-            "key_code": "x",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    ),
-    select_all=ConsumableKeyEvent(
-        {
-            "key_code": "h",
-        }
-    ),
-    save=ConsumableKeyEvent(
-        {
-            "key_code": "s",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    ),
-    select_mode_toggle=ConsumableKeyEvent(
-        {
-            "key_code": "spacebar",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    ),
-
-
-    # ###
-    # # Generally application specific
-    # ###
-    # find_usages=ConsumableKeyEvent(
-    #     {
-    #         "key_code": ".",
-    #         "modifiers": {
-    #             "mandatory": [MODIFIER_KEYS.control]
-    #         },
-    #     }
-    # ),
-    # go_back=ConsumableKeyEvent(
-    #     {
-    #         "key_code": ",",
-    #         "modifiers": {
-    #             "mandatory": [MODIFIER_KEYS.control]
-    #         },
-    #     }
-    # ),
-    # toggle_comment=ConsumableKeyEvent(
-    #     {
-    #         "key_code": ";",
-    #         "modifiers": {
-    #             "mandatory": [MODIFIER_KEYS.control]
-    #         },
-    #     }
-    # ),
 )
 
-STD_EMACS_KEYBIND_EVENTS = STDEmacsKeyEvents
 
-class _STD_EMACS_KEYBIND_EVENTS:
-    """These keybinds are directly std emacs keybinds and are both application agnostic and not.
-
-    NOTE: These are consumable key events as we only consume Emacs key events and should never produce them.
-    """
-
-    ###
-    # Generally application agnostic
-    ###
-    master_search = ConsumableKeyEvent(
-        {
-            "key_code": "x",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.command]
-            },
-        }
-    )
-
-    up = ConsumableKeyEvent(
-        {
-            "key_code": "p",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-    down = ConsumableKeyEvent(
-        {
-            "key_code": "n",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-    left = ConsumableKeyEvent(
-        {
-            "key_code": "b",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-    right = ConsumableKeyEvent(
-        {
-            "key_code": "f",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-    word_forward = ConsumableKeyEvent(
-        {
-            "key_code": "f",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.command]
-            },
-        }
-    )
-    word_backward = ConsumableKeyEvent(
-        {
-            "key_code": "b",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.command]
-            },
-        }
-    )
-    line_start = ConsumableKeyEvent(
-        {
-            "key_code": "a",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-    line_end = ConsumableKeyEvent(
-        {
-            "key_code": "e",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-    page_up = ConsumableKeyEvent(
-        {
-            "key_code": "v",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.command]
-            },
-        }
-    )
-    page_down = ConsumableKeyEvent(
-        {
-            "key_code": "v",
-            "modifiers": {
-                "mandatory": [
-                    MODIFIER_KEYS.control,
-                ]
-            },
-        }
-    )
-    file_start = ConsumableKeyEvent(
-        {
-            "key_code": "<",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-    file_end = ConsumableKeyEvent(
-        {
-            "key_code": ">",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-    wipe = ConsumableKeyEvent(
-        {
-            "key_code": "w",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-    yank = ConsumableKeyEvent(
-        {
-            "key_code": "y",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-    undo = ConsumableKeyEvent(
-        {
-            "key_code": "_",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-    redo = ConsumableKeyEvent(
-        {
-            "key_code": "-",
-            "modifiers": {
-                "mandatory": [
-                    MODIFIER_KEYS.control,
-                ]
-            },
-        }
-    )
-    delete = ConsumableKeyEvent(
-        {
-            "key_code": "d",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-    delete_word_backward = ConsumableKeyEvent(
-        {
-            "key_code": SPECIFIC_KEYS.backspace,
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.command]
-            },
-        }
-    )
-    delete_word_forward = ConsumableKeyEvent(
-        {
-            "key_code": "d",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.command]
-            },
-        }
-    )
-    cancel = ConsumableKeyEvent(
-        {
-            "key_code": "g",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-    find_in_view = ConsumableKeyEvent(
-        {
-            "key_code": "s",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-    mode_switch_general_extend = ConsumableKeyEvent(
-        {
-            "key_code": "x",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-    select_all = ConsumableKeyEvent(
-        {
-            "key_code": "h",
-        }
-    )
-    save = ConsumableKeyEvent(
-        {
-            "key_code": "s",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-    select_mode_toggle = ConsumableKeyEvent(
-        {
-            "key_code": "spacebar",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-
-    ###
-    # Generally application specific
-    ###
-    find_usages = ConsumableKeyEvent(
-        {
-            "key_code": ".",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-    go_back = ConsumableKeyEvent(
-        {
-            "key_code": ",",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-    toggle_comment = ConsumableKeyEvent(
-        {
-            "key_code": ";",
-            "modifiers": {
-                "mandatory": [MODIFIER_KEYS.control]
-            },
-        }
-    )
-
-    show_type_hint = None
-    toggle_type_annotations = None
-    format_file = None
-    rerun = None
-    run_shell_cmd = None
-
-    find_file = None
-    find_in_files = None
-    show_recent_files = None
-
-    pane_split_vertical = None
-    pane_split_horizontal = None
-    pane_next = None
-    pane_close = None
+####################################################################################################
 
 
 class STD_WINDOW_MANAGER_KEYBIND_EVENTS:
@@ -831,33 +511,6 @@ class STD_TABULAR_APPLICATION_KEYBIND_EVENTS:
     tab_close = None
 
 
-@dataclass
-class NMIO_STD_EDITOR_KEYMAP(Generic[KeyEvent]):
-    select_next_match: KeyEvent
-
-    run_shell_cmd: KeyEvent
-    show_recent_files: KeyEvent
-    toggle_type_annotations: KeyEvent
-    master_search: KeyEvent
-
-    peek_type_defn: KeyEvent
-    rerun: KeyEvent
-    pane_split_vertical: KeyEvent
-    pane_split_horizontal: KeyEvent
-    pane_next: KeyEvent
-    pane_close: KeyEvent
-
-    find_usages: KeyEvent
-    go_back: KeyEvent
-    toggle_comment: KeyEvent
-    format_file: KeyEvent
-    find_file: KeyEvent
-    find_in_files: KeyEvent
-
-
-# VsCodeKeymap = NMIO_STD_EDITOR_KEYMAP[ProducibleKeyEvent]()
-
-
 class STD_VSCODE_KEYBIND_EVENTS:
     """We use VSCode as our default editor target keymap because:
     1. It is very widely used so there is a plugin for VSCode keybind in IntelliJ by IntelliJ themselves
@@ -873,7 +526,7 @@ class STD_VSCODE_KEYBIND_EVENTS:
     show_recent_files = None
     toggle_type_annotations = None
 
-    master_search = ProducibleKeyEvent(
+    action_search = ProducibleKeyEvent(
         {
             "key_code": "p",
             "modifiers": [
@@ -891,7 +544,7 @@ class STD_VSCODE_KEYBIND_EVENTS:
         In IntelliJ search will be slow enough to actually break sometimes.
         """
         events = [
-            STD_VSCODE_KEYBIND_EVENTS.master_search,
+            STD_VSCODE_KEYBIND_EVENTS.action_search,
         ]
         for c in term:
             events.append(
@@ -976,6 +629,3 @@ class STD_VSCODE_KEYBIND_EVENTS:
             ],
         }
     )
-
-
-STD_EDITOR_KEYBINDS = STD_VSCODE_KEYBIND_EVENTS
