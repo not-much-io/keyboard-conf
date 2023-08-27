@@ -1,26 +1,30 @@
-# My personal keyboard setup
+# My personal keyboard configuration
 
-There are three levels of configuration:
+STATUS: Actively iterating
 
-* OS (MacOS)
-* Generic Software (Karabiner)
-* Specific Software (IDEs and Browsers)
+In short:
 
-The general philosophy is target emacs keybindings for familiarity and to not need special keys like esc, del and arrows.
+```text
+"I go clickidy clack" -consumable_key_events-> karabiner -producible_key_events-> "system go brrr"
+```
 
-There will be three kinds of configurations:
+## Why?
 
-* Just remap emacs keycombo to MacOS/generic standard keycombos/keys
-  * ex: control+p to up_arrow
-* Reconfigure MacOS keybind and then remap emacs to that
-  * ex: cut is command+x by default but that conflicts with emacs so remapping MacOS to something random
-    * usually mapping to ctrl+opt+cmd+{letter} (it does not matter, just needs something unused and long)
-    * then map control+w to new cut keybinding
-* For application specific keybinds use their own conf option
-  * ex: In IDE conf map control+. to "go to definition"
+Because I want to used the same keybindings system wide and I wish to use the keybindings of my choice.
 
-## Other Notes
+### Why not just use "standard keybinds" of your OS/Applications?
 
-Some emacs keymaps are already standard in MacOS:
+Because there is no real wholistic rhyme or reason to them and many actions do not have keybinds attached to them.
 
-* C+k - cut to end of line
+However I DO use:
+
+* Emacs keybindings as SOURCE keybinds that karabiner will consume to produce a standard set of keybinds.
+* MacOS and VSCode keybindings as TARGET keybinds that karabiner will produce. Although I need to enhance the standard set to get the functionality I want.
+
+## How?
+
+```text
+-emacs_consumable_key_events-> karabiner -std_macos_producible_key_events-> generic_software_actions (e.g. text box actions, tab actions, etc.)
+                                         -std_vscode_producible_key_events-> ide_actions (e.g. find references, rerun task, search actions etc.)
+                                         -custom_ide_keybinds_key_events-----^
+```
