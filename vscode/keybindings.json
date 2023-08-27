@@ -1,0 +1,40 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "f1",
+        "command": "workbench.action.tasks.reRunTask",
+    },
+    {
+        "key": "f2",
+        "command": "workbench.action.focusNextGroup",
+    },
+    {
+        "key": "f3",
+        "command": "search.action.openEditor",
+    },
+    {
+        "key": "f4",
+        "command": "editor.action.peekTypeDefinition",
+    },
+    {
+        "key": "cmd+enter",
+        "command": "editor.action.showHover",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+c ctrl+a",
+        "command": "toggle",
+        "when": "editorTextFocus",
+        "args": {
+            "id": "toggle_inlay_hints",
+            "value": [
+                {
+                    "editor.inlayHints.enabled": "on"
+                },
+                {
+                    "editor.inlayHints.enabled": "off"
+                }
+            ]
+        }
+    }
+]
