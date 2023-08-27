@@ -1,12 +1,16 @@
 # My personal keyboard configuration
 
-STATUS: Actively iterating
-DISCLAIMER: Just for my use, not intended to be generic.
+* **STATUS**: Actively iterating
+* **DISCLAIMER**: Just for my use, not intended to be generic.
 
 In short:
 
 ```text
-"go clickidy clack" -consumable_key_events-> karabiner -producible_key_events-> "system go brrr"
+"go clickidy clack" 
+-consumable_key_events-> 
+karabiner 
+-producible_key_events-> 
+"system go brrr"
 ```
 
 ## Why?
