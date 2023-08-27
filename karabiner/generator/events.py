@@ -117,10 +117,15 @@ class EmacsUtilsKeymap(Generic[KeyEvent]):
 
 
 @dataclass
+class EmacsUniquesKeymap:
+    cut: ConsumableKeyEvent
+    
+@dataclass
 class EmacsKeymap(
     OsLevelKeymap[ConsumableKeyEvent],
     # StdIdeKeymap[ConsumableKeyEvent],
     EmacsUtilsKeymap[ConsumableKeyEvent],
+    EmacsUniquesKeymap,
 ):
     """These key events are relevant to Emacs specifically"""
 
@@ -386,7 +391,16 @@ STDEmacsKeyEvents = EmacsKeymap(
             },
         }
     ),
+    # We do not really use
     copy=ConsumableKeyEvent(
+        {
+            "key_code": "w",
+            "modifiers": {
+                "mandatory": [MODIFIER_KEYS.command]
+            },
+        }
+    ),
+    cut=ConsumableKeyEvent(
         {
             "key_code": "w",
             "modifiers": {
@@ -528,8 +542,9 @@ STDEmacsKeyEvents = EmacsKeymap(
     # ),
 )
 
+STD_EMACS_KEYBIND_EVENTS = STDEmacsKeyEvents
 
-class STD_EMACS_KEYBIND_EVENTS:
+class _STD_EMACS_KEYBIND_EVENTS:
     """These keybinds are directly std emacs keybinds and are both application agnostic and not.
 
     NOTE: These are consumable key events as we only consume Emacs key events and should never produce them.

@@ -332,7 +332,7 @@ modifications += [
         manipulators=[
             {
                 "type": "basic",
-                "from": STD_EMACS_KEYBIND_EVENTS.wipe,
+                "from": STD_EMACS_KEYBIND_EVENTS.cut,
                 "to": [
                     # Emulating cut as real cut through Command + X will be taken by Emacs "action search"
                     STDMacOSKeyEvents.copy,
@@ -348,7 +348,7 @@ modifications += [
         manipulators=[
             {
                 "type": "basic",
-                "from": STD_EMACS_KEYBIND_EVENTS.yank,
+                "from": STD_EMACS_KEYBIND_EVENTS.paste,
                 "to": [STDMacOSKeyEvents.paste],
             },
         ],
@@ -414,7 +414,7 @@ modifications += [
         manipulators=[
             {
                 "type": "basic",
-                "from": STD_EMACS_KEYBIND_EVENTS.cancel,
+                "from": STD_EMACS_KEYBIND_EVENTS.esc,
                 "to": [
                     STD_KEYS.esc,
                     Utils.clear_emacs_mode,

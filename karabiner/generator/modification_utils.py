@@ -1,14 +1,5 @@
-from typing import (
-    TypedDict,
-    List,
-    Literal,
-    Union,
-    NotRequired,
-)
-from .event_utils import (
-    ProducibleKeyEvent,
-    ConsumableKeyEvent,
-)
+from typing import TypedDict, List, Literal, Union, NotRequired
+from .event_utils import ProducibleKeyEvent, ConsumableKeyEvent
 
 
 class Condition(TypedDict):
@@ -32,9 +23,7 @@ class ToDelayedAction(TypedDict):
 
 
 # from is a reserved keyword so using this workaround
-FromWorkaround = TypedDict(
-    "From", {"from": ConsumableKeyEvent}
-)
+FromWorkaround = TypedDict("From", {"from": ConsumableKeyEvent})
 
 
 class Manipulation(FromWorkaround):
