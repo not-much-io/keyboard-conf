@@ -543,6 +543,22 @@ modifications += [
         ],
     ),
     Modification(
+        description="Emacs Mode: General Extend: Focus Next Window",
+        manipulators=[
+            {
+                "type": "basic",
+                "conditions": [
+                    Utils.is_emacs_mode_general_extend
+                ],
+                "from": STDEmacsKeyEvents.std_ide_keymap.focus_next_window,
+                "to": [
+                    STDIdeKeyEvents.focus_next_window,
+                    Utils.clear_emacs_mode,
+                ],
+            },
+        ],
+    ),
+    Modification(
         description="Find File",
         manipulators=[
             {

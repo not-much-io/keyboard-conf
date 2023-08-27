@@ -53,6 +53,7 @@ class StdIdeKeymap(Generic[KeyEvent]):
     find_references: KeyEvent
     go_back: KeyEvent
     find_file: KeyEvent
+    focus_next_window: KeyEvent
 
     # # select_next_match: KeyEvent
 
@@ -521,6 +522,11 @@ STDEmacsKeyEvents = EmacsKeymap(
                 },
             }
         ),
+        focus_next_window=ConsumableKeyEvent(
+            {
+                "key_code": "o",
+            }
+        ),
     ),
     emacs_utils_keymap=EmacsUtilsKeymap[ConsumableKeyEvent](
         mode_switch_general_extend=ConsumableKeyEvent(
@@ -612,6 +618,11 @@ STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
             "modifiers": [
                 MODIFIER_KEYS.command,
             ],
+        }
+    ),
+    focus_next_window=ProducibleKeyEvent(
+        {
+            "key_code": "f2",
         }
     ),
 )
