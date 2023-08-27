@@ -638,11 +638,7 @@ STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
     ),
     find_in_files=ProducibleKeyEvent(
         {
-            "key_code": "f",
-            "modifiers": [
-                MODIFIER_KEYS.command,
-                MODIFIER_KEYS.left_shift,
-            ],
+            "key_code": "f3",
         }
     ),
 )

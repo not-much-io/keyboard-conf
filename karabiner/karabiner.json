@@ -1110,11 +1110,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "f",
-                                        "modifiers": [
-                                            "right_command",
-                                            "left_shift"
-                                        ]
+                                        "key_code": "f3"
                                     },
                                     {
                                         "set_variable": {
