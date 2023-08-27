@@ -589,6 +589,22 @@ modifications += [
         ],
     ),
     Modification(
+        description="Emacs Mode: General Extend: Select Next Match",
+        manipulators=[
+            {
+                "type": "basic",
+                "conditions": [
+                    Utils.is_emacs_mode_general_extend
+                ],
+                "from": STDEmacsKeyEvents.std_ide_keymap.select_next_match,
+                "to": [
+                    STDIdeKeyEvents.select_next_match,
+                    Utils.clear_emacs_mode,
+                ],
+            },
+        ],
+    ),
+    Modification(
         description="Emacs Mode: Mode Specific",
         manipulators=[
             {

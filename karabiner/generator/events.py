@@ -54,20 +54,21 @@ class StdIdeKeymap(Generic[KeyEvent]):
     go_back: KeyEvent
     find_file: KeyEvent
     focus_next_window: KeyEvent
-    # close_window: KeyEvent
     find_in_files: KeyEvent
     toggle_comment: KeyEvent
     peek_type_defn: KeyEvent
-
-    # # select_next_match: KeyEvent
+    select_next_match: KeyEvent
 
     # run_shell_cmd: KeyEvent
-    # show_recent_files: KeyEvent
+    # TODO: Honestly these are used so seldom that are they really worth it?
+    #       Can just use the search functionality in the IDEs themselves.
+    # split_vertical: KeyEvent
+    # split_horizontal: KeyEvent
     # toggle_type_annotations: KeyEvent
-
-    # pane_split_vertical: KeyEvent
-    # pane_split_horizontal: KeyEvent
-    # pane_close: KeyEvent
+    # show_recent_files: KeyEvent
+    close_window: List[
+        KeyEvent
+    ]  # eh, leaving as already had it on hand
 
 
 @dataclass
@@ -525,6 +526,13 @@ STDEmacsKeyEvents = EmacsKeymap(
                 "key_code": "o",
             }
         ),
+        close_window=[
+            ConsumableKeyEvent(
+                {
+                    "key_code": "0",
+                }
+            )
+        ],
         find_in_files=ConsumableKeyEvent(
             {
                 "key_code": "s",
@@ -548,6 +556,16 @@ STDEmacsKeyEvents = EmacsKeymap(
         peek_type_defn=ConsumableKeyEvent(
             {
                 "key_code": "t",
+                "modifiers": {
+                    "mandatory": [
+                        MODIFIER_KEYS.control,
+                    ]
+                },
+            }
+        ),
+        select_next_match=ConsumableKeyEvent(
+            {
+                "key_code": "m",
                 "modifiers": {
                     "mandatory": [
                         MODIFIER_KEYS.control,
@@ -669,6 +687,30 @@ STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
     peek_type_defn=ProducibleKeyEvent(
         {
             "key_code": "f4",
+        }
+    ),
+    close_window=[
+        ProducibleKeyEvent(
+            {
+                "key_code": "k",
+                "modifiers": [
+                    MODIFIER_KEYS.command,
+                ],
+            }
+        ),
+        ProducibleKeyEvent(
+            {
+                "key_code": "w",
+            }
+        ),
+    ],
+    select_next_match=ProducibleKeyEvent(
+        {
+            "key_code": "d",
+            "modifiers": [
+                # Left variant to avoid conflict with delete word forward
+                MODIFIER_KEYS.left_command,
+            ],
         }
     ),
 )

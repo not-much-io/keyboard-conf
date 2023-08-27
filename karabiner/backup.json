@@ -1014,6 +1014,43 @@
                         ]
                     },
                     {
+                        "description": "Emacs Mode: General Extend: Select Next Match",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "C-x"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "m",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "d",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "emacs_mode",
+                                            "value": "none"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         "description": "Emacs Mode: Mode Specific",
                         "manipulators": [
                             {

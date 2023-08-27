@@ -11,3 +11,4 @@ karabiner-restore:
 	cat karabiner/backup.json > ../../.config/karabiner/karabiner.json
 
 karabiner-devloop: karabiner-compile karabiner-install karabiner-backup
+	
