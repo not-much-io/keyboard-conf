@@ -472,6 +472,19 @@ modifications += [
         ],
     ),
     Modification(
+        description="Find references",
+        manipulators=[
+            {
+                "type": "basic",
+                "conditions": [Utils.is_emacs_mode_none],
+                "from": STDEmacsKeyEvents.std_ide_keymap.find_references,
+                "to": [
+                    STDIdeKeyEvents.find_references,
+                ],
+            },
+        ],
+    ),
+    Modification(
         description="Emacs Mode: General Extend",
         manipulators=[
             {

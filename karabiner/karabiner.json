@@ -599,7 +599,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "delete"
+                                        "key_code": "delete_forward"
                                     }
                                 ]
                             }
@@ -627,7 +627,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "delete",
+                                        "key_code": "delete_forward",
                                         "modifiers": [
                                             "right_option",
                                             "fn"
@@ -737,6 +737,37 @@
                                         "key_code": "p",
                                         "modifiers": [
                                             "right_command",
+                                            "right_shift"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Find references",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "f12",
+                                        "modifiers": [
                                             "right_shift"
                                         ]
                                     }

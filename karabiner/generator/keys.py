@@ -6,7 +6,7 @@ class SPECIFIC_KEYS:
     esc: KeyCode = "escape"
 
     backspace: KeyCode = "delete_or_backspace"
-    delete: KeyCode = "delete"
+    delete: KeyCode = "delete_forward"
     enter: KeyCode = "return_or_enter"
 
     up: KeyCode = "up_arrow"

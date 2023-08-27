@@ -50,6 +50,7 @@ class StdIdeKeymap(Generic[KeyEvent]):
     action_search: KeyEvent
     rerun: KeyEvent
     format_file: KeyEvent
+    find_references: KeyEvent
 
     # # select_next_match: KeyEvent
 
@@ -492,6 +493,16 @@ STDEmacsKeyEvents = EmacsKeymap(
                 },
             }
         ),
+        find_references=ConsumableKeyEvent(
+            {
+                "key_code": ".",
+                "modifiers": {
+                    "mandatory": [
+                        MODIFIER_KEYS.control,
+                    ]
+                },
+            }
+        ),
     ),
     emacs_utils_keymap=EmacsUtilsKeymap[ConsumableKeyEvent](
         mode_switch_general_extend=ConsumableKeyEvent(
@@ -557,6 +568,14 @@ STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
             "key_code": "f",
             "modifiers": [
                 MODIFIER_KEYS.option,
+                MODIFIER_KEYS.shift,
+            ],
+        }
+    ),
+    find_references=ProducibleKeyEvent(
+        {
+            "key_code": "f12",
+            "modifiers": [
                 MODIFIER_KEYS.shift,
             ],
         }
