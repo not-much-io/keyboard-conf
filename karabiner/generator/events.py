@@ -48,26 +48,27 @@ class StdIdeKeymap(Generic[KeyEvent]):
     """These key events are relevant to IDEs specifically"""
 
     action_search: KeyEvent
-
-    # select_next_match: KeyEvent
-
-    run_shell_cmd: KeyEvent
-    show_recent_files: KeyEvent
-    toggle_type_annotations: KeyEvent
-
-    peek_type_defn: KeyEvent
     rerun: KeyEvent
-    pane_split_vertical: KeyEvent
-    pane_split_horizontal: KeyEvent
-    pane_next: KeyEvent
-    pane_close: KeyEvent
 
-    find_usages: KeyEvent
-    go_back: KeyEvent
-    toggle_comment: KeyEvent
-    format_file: KeyEvent
-    find_file: KeyEvent
-    find_in_files: KeyEvent
+    # # select_next_match: KeyEvent
+
+    # run_shell_cmd: KeyEvent
+    # show_recent_files: KeyEvent
+    # toggle_type_annotations: KeyEvent
+
+    # peek_type_defn: KeyEvent
+
+    # pane_split_vertical: KeyEvent
+    # pane_split_horizontal: KeyEvent
+    # pane_next: KeyEvent
+    # pane_close: KeyEvent
+
+    # find_usages: KeyEvent
+    # go_back: KeyEvent
+    # toggle_comment: KeyEvent
+    # format_file: KeyEvent
+    # find_file: KeyEvent
+    # find_in_files: KeyEvent
 
 
 @dataclass
@@ -75,6 +76,7 @@ class EmacsUtilsKeymap(Generic[KeyEvent]):
     """These key events are used as utilities to implement Emacs keybinds"""
 
     mode_switch_general_extend: ConsumableKeyEvent
+    mode_switch_mode_specific: ConsumableKeyEvent
     select_mode_toggle: ConsumableKeyEvent
 
 
@@ -88,7 +90,7 @@ class EmacsKeymap:
     """These key events are relevant to Emacs specifically"""
 
     os_level_keymap: OsLevelKeymap[ConsumableKeyEvent]
-    # std_ide_keymap: StdIdeKeymap[ConsumableKeyEvent]
+    std_ide_keymap: StdIdeKeymap[ConsumableKeyEvent]
     emacs_utils_keymap: EmacsUtilsKeymap[ConsumableKeyEvent]
     emacs_uniques_keymap: EmacsUniquesKeymap
 
@@ -255,7 +257,12 @@ STDMacOSKeyEvents = OsLevelKeymap[ProducibleKeyEvent](
     ),
 )
 
-
+# These keybinds are:
+# 1) Set by default on a fresh emacs install
+#   OR
+# 2) Are often used in emacs modes and plugins
+#   OR
+# 3) Are just set to something semantically sensible
 STDEmacsKeyEvents = EmacsKeymap(
     os_level_keymap=OsLevelKeymap[ConsumableKeyEvent](
         up=ConsumableKeyEvent(
@@ -453,11 +460,40 @@ STDEmacsKeyEvents = EmacsKeymap(
             }
         ),
     ),
-    # std_ide_keymap=StdIdeKeymap[ConsumableKeyEvent](
+    std_ide_keymap=StdIdeKeymap[ConsumableKeyEvent](
+        action_search=ConsumableKeyEvent(
+            {
+                "key_code": "x",
+                "modifiers": {
+                    "mandatory": [
+                        MODIFIER_KEYS.command,
+                    ]
+                },
+            }
+        ),
+        rerun=ConsumableKeyEvent(
+            {
+                "key_code": "c",
+                "modifiers": {
+                    "mandatory": [
+                        MODIFIER_KEYS.control,
+                    ]
+                },
+            }
+        ),
+    ),
     emacs_utils_keymap=EmacsUtilsKeymap[ConsumableKeyEvent](
         mode_switch_general_extend=ConsumableKeyEvent(
             {
                 "key_code": "x",
+                "modifiers": {
+                    "mandatory": [MODIFIER_KEYS.control]
+                },
+            }
+        ),
+        mode_switch_mode_specific=ConsumableKeyEvent(
+            {
+                "key_code": "c",
                 "modifiers": {
                     "mandatory": [MODIFIER_KEYS.control]
                 },
@@ -484,6 +520,28 @@ STDEmacsKeyEvents = EmacsKeymap(
     ),
 )
 
+# Based on VSCode keymaps with holes in default keymap filled in with sensible defaults.
+# It does not matter what this is really, the only consideration are:
+# 1) The keybinds do not conflict with key events we try to consume (to avoid produce-consume loops)
+# 2) The keybinds are sensibly complete for the StdIdeKeymap
+# 3) The keybinds are much used - meaning there is probably a keymap plugin for it in mainstream IDEs
+# Also considered IntelliJ keymap as default but it has a few more holes and is probably less supported by plugins. 
+STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
+    action_search=ProducibleKeyEvent(
+        {
+            "key_code": "p",
+            "modifiers": [
+                MODIFIER_KEYS.command,
+                MODIFIER_KEYS.shift,
+            ],
+        }
+    ),
+    rerun=ProducibleKeyEvent(
+        {
+            "key_code": "f1",
+        }
+    ),
+)
 
 ####################################################################################################
 

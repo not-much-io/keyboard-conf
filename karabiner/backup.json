@@ -708,6 +708,43 @@
                         ]
                     },
                     {
+                        "description": "Action search",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "x",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_command"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "emacs_mode",
+                                            "value": "none"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "select_mode",
+                                            "value": "off"
+                                        }
+                                    },
+                                    {
+                                        "key_code": "p",
+                                        "modifiers": [
+                                            "right_command",
+                                            "right_shift"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         "description": "Emacs Mode: General Extend",
                         "manipulators": [
                             {
@@ -737,14 +774,6 @@
                                 ],
                                 "to_delayed_action": {
                                     "to_if_invoked": [
-                                        {
-                                            "set_variable": {
-                                                "name": "emacs_mode",
-                                                "value": "none"
-                                            }
-                                        }
-                                    ],
-                                    "to_if_canceled": [
                                         {
                                             "set_variable": {
                                                 "name": "emacs_mode",
@@ -814,6 +843,81 @@
                                         "modifiers": [
                                             "right_command"
                                         ]
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "emacs_mode",
+                                            "value": "none"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Emacs Mode: Mode Specific",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "emacs_mode",
+                                            "value": "C-c"
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_invoked": [
+                                        {
+                                            "set_variable": {
+                                                "name": "emacs_mode",
+                                                "value": "none"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Emacs Mode: Mode Specific: Rerun",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "C-c"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "f1"
                                     },
                                     {
                                         "set_variable": {
@@ -1329,148 +1433,6 @@
                                         ]
                                     }
                                 ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs navigate back",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "none"
-                                    }
-                                ],
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_command"
-                                        ]
-                                    },
-                                    "key_code": "comma"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "b",
-                                        "modifiers": [
-                                            "right_command",
-                                            "right_option",
-                                            "right_control"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs find file",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "C-x"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "f",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "f",
-                                        "modifiers": [
-                                            "right_command",
-                                            "right_option",
-                                            "right_control",
-                                            "left_shift"
-                                        ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "emacs_mode",
-                                            "value": "none"
-                                        }
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs next pane",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "emacs_mode",
-                                        "value": "C-x"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "o"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "n",
-                                        "modifiers": [
-                                            "right_command",
-                                            "right_option",
-                                            "right_control",
-                                            "left_shift"
-                                        ]
-                                    },
-                                    {
-                                        "set_variable": {
-                                            "name": "emacs_mode",
-                                            "value": "none"
-                                        }
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "emacs mode switch : C-c",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_control"
-                                        ]
-                                    },
-                                    "key_code": "c"
-                                },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "emacs_mode",
-                                            "value": "C-c"
-                                        }
-                                    }
-                                ],
-                                "to_delayed_action": {
-                                    "to_if_invoked": [
-                                        {
-                                            "set_variable": {
-                                                "name": "emacs_mode",
-                                                "value": "none"
-                                            }
-                                        }
-                                    ]
-                                }
                             }
                         ]
                     }

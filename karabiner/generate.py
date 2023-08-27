@@ -9,6 +9,7 @@ from generator.modification_utils import (
 from generator.events import (
     STDEmacsKeyEvents,
     STDMacOSKeyEvents,
+    STDIdeKeyEvents,
     MODIFIER_KEYS,
 )
 import json
@@ -34,11 +35,26 @@ class Utils:
             }
         }
     )
+    set_emacs_mode_mode_specific = SetVariable(
+        {
+            "set_variable": {
+                "name": "emacs_mode",
+                "value": "C-c",
+            }
+        }
+    )
     is_emacs_mode_general_extend = Condition(
         {
             "type": "variable_if",
             "name": "emacs_mode",
             "value": "C-x",
+        }
+    )
+    is_emacs_mode_mode_specific = Condition(
+        {
+            "type": "variable_if",
+            "name": "emacs_mode",
+            "value": "C-c",
         }
     )
     is_emacs_mode_none = Condition(
@@ -66,16 +82,16 @@ class Utils:
                 # If another key is pressed before the timeout but after resolving an event clear the mode.
                 # This is so each command in mode does not have to clear the mode manually.
                 # TODO: This does not seem to work how I expected it to, just doing manually for now.
-                "to_if_canceled": [
-                    SetVariable(
-                        {
-                            "set_variable": {
-                                "name": "emacs_mode",
-                                "value": "none",
-                            }
-                        }
-                    )
-                ],
+                # "to_if_canceled": [
+                #     SetVariable(
+                #         {
+                #             "set_variable": {
+                #                 "name": "emacs_mode",
+                #                 "value": "none",
+                #             }
+                #         }
+                #     )
+                # ],
             }
         )
     }
@@ -441,6 +457,21 @@ modifications += [
         ],
     ),
     Modification(
+        description="Action search",
+        manipulators=[
+            {
+                "type": "basic",
+                "from": STDEmacsKeyEvents.std_ide_keymap.action_search,
+                "to": [
+                    # If already going for action search, no mode has any relevance
+                    Utils.clear_emacs_mode,
+                    Utils.set_select_mode_off,
+                    STDIdeKeyEvents.action_search,
+                ],
+            },
+        ],
+    ),
+    Modification(
         description="Emacs Mode: General Extend",
         manipulators=[
             {
@@ -481,6 +512,36 @@ modifications += [
                 "from": STDEmacsKeyEvents.os_level_keymap.save,
                 "to": [
                     STDMacOSKeyEvents.save,
+                    Utils.clear_emacs_mode,
+                ],
+            },
+        ],
+    ),
+    Modification(
+        description="Emacs Mode: Mode Specific",
+        manipulators=[
+            {
+                "type": "basic",
+                "conditions": [Utils.is_emacs_mode_none],
+                "from": STDEmacsKeyEvents.emacs_utils_keymap.mode_switch_mode_specific,
+                "to": [
+                    Utils.set_emacs_mode_mode_specific,
+                ],
+                **Utils.clear_emacs_mode_after_timeout,
+            },
+        ],  # type: ignore
+    ),
+    Modification(
+        description="Emacs Mode: Mode Specific: Rerun",
+        manipulators=[
+            {
+                "type": "basic",
+                "conditions": [
+                    Utils.is_emacs_mode_mode_specific
+                ],
+                "from": STDEmacsKeyEvents.std_ide_keymap.rerun,
+                "to": [
+                    STDIdeKeyEvents.rerun,
                     Utils.clear_emacs_mode,
                 ],
             },
@@ -533,7 +594,7 @@ modifications += [
 with open("karabiner/karabiner.jsonc") as file:
     while line := file.readline():
         if line.strip().startswith("// ::commands"):
-            for modification in modifications:
+            for i, modification in enumerate(modifications):
                 modification = json.dumps(
                     modification, indent=4
                 )
@@ -543,7 +604,11 @@ with open("karabiner/karabiner.jsonc") as file:
                         "\n", "\n" + Utils.INDENT
                     )
                 )
-                print(modification, end=",\n")
+
+                if i == len(modifications) - 1:
+                    print(modification, end="\n")
+                else:
+                    print(modification, end=",\n")
             continue
         if line.strip().startswith("//"):
             continue
