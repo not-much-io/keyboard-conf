@@ -780,6 +780,13 @@
                         "manipulators": [
                             {
                                 "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "comma",
                                     "modifiers": {
@@ -793,6 +800,37 @@
                                         "key_code": "hyphen",
                                         "modifiers": [
                                             "right_control"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Toggle comment",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "emacs_mode",
+                                        "value": "none"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "semicolon",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_command"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "slash",
+                                        "modifiers": [
+                                            "right_command"
                                         ]
                                     }
                                 ]

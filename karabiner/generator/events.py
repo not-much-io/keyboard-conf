@@ -55,6 +55,7 @@ class StdIdeKeymap(Generic[KeyEvent]):
     find_file: KeyEvent
     focus_next_window: KeyEvent
     find_in_files: KeyEvent
+    toggle_comment: KeyEvent
 
     # # select_next_match: KeyEvent
 
@@ -68,10 +69,6 @@ class StdIdeKeymap(Generic[KeyEvent]):
     # pane_split_horizontal: KeyEvent
     # pane_next: KeyEvent
     # pane_close: KeyEvent
-
-    # toggle_comment: KeyEvent
-    #
-
 
 @dataclass
 class EmacsUtilsKeymap(Generic[KeyEvent]):
@@ -538,6 +535,16 @@ STDEmacsKeyEvents = EmacsKeymap(
                 },
             }
         ),
+        toggle_comment=ConsumableKeyEvent(
+            {
+                "key_code": ";",
+                "modifiers": {
+                    "mandatory": [
+                        MODIFIER_KEYS.command,
+                    ]
+                },
+            }
+        ),
     ),
     emacs_utils_keymap=EmacsUtilsKeymap[ConsumableKeyEvent](
         mode_switch_general_extend=ConsumableKeyEvent(
@@ -639,6 +646,14 @@ STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
     find_in_files=ProducibleKeyEvent(
         {
             "key_code": "f3",
+        }
+    ),
+    toggle_comment=ProducibleKeyEvent(
+        {
+            "key_code": "/",
+            "modifiers": [
+                MODIFIER_KEYS.command,
+            ],
         }
     ),
 )

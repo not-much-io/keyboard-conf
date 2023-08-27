@@ -489,9 +489,23 @@ modifications += [
         manipulators=[
             {
                 "type": "basic",
+                "conditions": [Utils.is_emacs_mode_none],
                 "from": STDEmacsKeyEvents.std_ide_keymap.go_back,
                 "to": [
                     STDIdeKeyEvents.go_back,
+                ],
+            },
+        ],
+    ),
+    Modification(
+        description="Toggle comment",
+        manipulators=[
+            {
+                "type": "basic",
+                "conditions": [Utils.is_emacs_mode_none],
+                "from": STDEmacsKeyEvents.std_ide_keymap.toggle_comment,
+                "to": [
+                    STDIdeKeyEvents.toggle_comment,
                 ],
             },
         ],

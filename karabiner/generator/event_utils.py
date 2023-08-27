@@ -99,5 +99,7 @@ def translate_symbols(
         return "period", None
     if key == ",":
         return "comma", None
+    if key == "/":
+        return "slash", None
 
     return key, None
