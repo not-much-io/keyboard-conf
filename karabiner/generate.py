@@ -620,6 +620,22 @@ modifications += [
             },
         ],
     ),
+    Modification(
+        description="Emacs Mode: Mode Specific: Find in Files",
+        manipulators=[
+            {
+                "type": "basic",
+                "conditions": [
+                    Utils.is_emacs_mode_mode_specific
+                ],
+                "from": STDEmacsKeyEvents.std_ide_keymap.find_in_files,
+                "to": [
+                    STDIdeKeyEvents.find_in_files,
+                    Utils.clear_emacs_mode,
+                ],
+            },
+        ],
+    ),
 ]
 
 # Define the select mode modifications
