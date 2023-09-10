@@ -53,6 +53,7 @@ class StdIdeKeymap(Generic[KeyEvent]):
     find_references: KeyEvent
     go_back: KeyEvent
     find_file: KeyEvent
+    find_symbol: KeyEvent
     focus_next_window: KeyEvent
     find_in_files: KeyEvent
     toggle_comment: KeyEvent
@@ -521,6 +522,16 @@ STDEmacsKeyEvents = EmacsKeymap(
                 },
             }
         ),
+        find_symbol=ConsumableKeyEvent(
+            {
+                "key_code": ".",
+                "modifiers": {
+                    "mandatory": [
+                        MODIFIER_KEYS.control,
+                    ]
+                },
+            }
+        ),
         focus_next_window=ConsumableKeyEvent(
             {
                 "key_code": "o",
@@ -645,9 +656,6 @@ STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
     find_references=ProducibleKeyEvent(
         {
             "key_code": "f12",
-            "modifiers": [
-                MODIFIER_KEYS.shift,
-            ],
         }
     ),
     go_back=ProducibleKeyEvent(
@@ -661,6 +669,14 @@ STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
     find_file=ProducibleKeyEvent(
         {
             "key_code": "p",
+            "modifiers": [
+                MODIFIER_KEYS.command,
+            ],
+        }
+    ),
+    find_symbol=ProducibleKeyEvent(
+        {
+            "key_code": "t",
             "modifiers": [
                 MODIFIER_KEYS.command,
             ],
@@ -714,6 +730,7 @@ STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
         }
     ),
 )
+
 
 class STD_WINDOW_MANAGER_KEYBIND_EVENTS:
     """TODO: Of secondary importance right now"""

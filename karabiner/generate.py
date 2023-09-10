@@ -19,6 +19,14 @@ modifications: List[Modification] = []
 
 
 class Utils:
+    debug_variable = SetVariable(
+        {
+            "set_variable": {
+                "name": "debug",
+                "value": "check",
+            }
+        }
+    )
     clear_emacs_mode = SetVariable(
         {
             "set_variable": {
@@ -64,6 +72,7 @@ class Utils:
             "value": "none",
         }
     )
+    # TODO: At the current time this only works for the case where entering a mode and doing nothing - THEN will timeout and clear the mode.
     clear_emacs_mode_after_timeout = {
         "to_delayed_action": ToDelayedAction(
             {
@@ -511,20 +520,6 @@ modifications += [
         ],
     ),
     Modification(
-        description="Emacs Mode: General Extend",
-        manipulators=[
-            {
-                "type": "basic",
-                "conditions": [Utils.is_emacs_mode_none],
-                "from": STDEmacsKeyEvents.emacs_utils_keymap.mode_switch_general_extend,
-                "to": [
-                    Utils.set_emacs_mode_general_extend,
-                ],
-                **Utils.clear_emacs_mode_after_timeout,
-            },
-        ],  # type: ignore
-    ),
-    Modification(
         description="Emacs Mode: General Extend: Select all",
         manipulators=[
             {
@@ -573,7 +568,7 @@ modifications += [
         ],
     ),
     Modification(
-        description="Find File",
+        description="Emacs MOde: General Extend: Find File",
         manipulators=[
             {
                 "type": "basic",
@@ -603,20 +598,6 @@ modifications += [
                 ],
             },
         ],
-    ),
-    Modification(
-        description="Emacs Mode: Mode Specific",
-        manipulators=[
-            {
-                "type": "basic",
-                "conditions": [Utils.is_emacs_mode_none],
-                "from": STDEmacsKeyEvents.emacs_utils_keymap.mode_switch_mode_specific,
-                "to": [
-                    Utils.set_emacs_mode_mode_specific,
-                ],
-                **Utils.clear_emacs_mode_after_timeout,
-            },
-        ],  # type: ignore
     ),
     Modification(
         description="Emacs Mode: Mode Specific: Rerun",
@@ -686,32 +667,6 @@ modifications += [
 
 # Define the select mode modifications
 modifications += [
-    Modification(
-        description="Select Mode: On",
-        manipulators=[
-            {
-                "type": "basic",
-                "conditions": [Utils.is_select_mode_off],
-                "from": STDEmacsKeyEvents.emacs_utils_keymap.select_mode_toggle,
-                "to": [Utils.set_select_mode_on],
-            },
-        ],
-    ),
-    Modification(
-        description="Select Mode: Off",
-        manipulators=[
-            {
-                "type": "basic",
-                "conditions": [Utils.is_select_mode_on],
-                "from": STDEmacsKeyEvents.emacs_utils_keymap.select_mode_toggle,
-                "to": [
-                    Utils.set_select_mode_off,
-                    # clearing whatever is currently selected if any
-                    STDMacOSKeyEvents.esc,
-                ],
-            },
-        ],
-    ),
     Utils.create_select_mode_variant("Up"),
     Utils.create_select_mode_variant("Down"),
     Utils.create_select_mode_variant("Left"),
@@ -724,6 +679,155 @@ modifications += [
     Utils.create_select_mode_variant("Page Up"),
     Utils.create_select_mode_variant("File Start"),
     Utils.create_select_mode_variant("File End"),
+]
+
+# Define the mode switching.
+# NOTE: These have to be at the end of the list to allow mode specific commands to trigger before reaching these. For example C-c C-c.
+modifications += [
+    Modification(
+        description="Emacs Mode: Mode Specific",
+        manipulators=[
+            {
+                "type": "basic",
+                "conditions": [Utils.is_emacs_mode_none],
+                "from": STDEmacsKeyEvents.emacs_utils_keymap.mode_switch_mode_specific,
+                "to": [
+                    Utils.set_emacs_mode_mode_specific,
+                ],
+                **Utils.clear_emacs_mode_after_timeout,
+            },
+        ],  # type: ignore
+    ),
+    Modification(
+        description="Emacs Mode: General Extend",
+        manipulators=[
+            {
+                "type": "basic",
+                "conditions": [Utils.is_emacs_mode_none],
+                "from": STDEmacsKeyEvents.emacs_utils_keymap.mode_switch_general_extend,
+                "to": [
+                    Utils.set_emacs_mode_general_extend,
+                ],
+                **Utils.clear_emacs_mode_after_timeout,
+            },
+        ],  # type: ignore
+    ),
+    Modification(
+        description="Select Mode: On",
+        manipulators=[
+            {
+                "type": "basic",
+                "conditions": [Utils.is_select_mode_off],
+                "from": STDEmacsKeyEvents.emacs_utils_keymap.select_mode_toggle,
+                "to": [
+                    # Clearing emacs mode to have a cleared state
+                    Utils.clear_emacs_mode,
+                    Utils.set_select_mode_on,
+                ],
+            },
+        ],
+    ),
+    Modification(
+        description="Select Mode: Off",
+        manipulators=[
+            {
+                "type": "basic",
+                "conditions": [Utils.is_select_mode_on],
+                "from": STDEmacsKeyEvents.emacs_utils_keymap.select_mode_toggle,
+                "to": [
+                    # Clearing emacs mode to have a cleared state
+                    Utils.clear_emacs_mode,
+                    Utils.set_select_mode_off,
+                    # clearing whatever is currently selected if any
+                    STDMacOSKeyEvents.esc,
+                ],
+            },
+        ],
+    ),
+    # TODO: Look over the rest of the approach above - some stuff not needed anymore.
+    # These must be the last modifications in the list. This ensures that we are indeed in the state where:
+    # - We are in an emacs mode
+    # - Some key combination was pressed after the mode switch
+    # - The key combination is not a valid for the current emacs mode (did not match anything before these last items)
+    # Then we know that we can clear the mode - aka. key combo not found.
+    # NOTE: There is also the special case of switching directly between modes.
+    #       Should be fine, but might interfere with certain key combos? For now testing.
+    Modification(
+        description="Emacs Mode: Special case of switching from general_extend -> mode_specific",
+        manipulators=[
+            {
+                "type": "basic",
+                "conditions": [
+                    Utils.is_emacs_mode_general_extend,
+                ],
+                "from": STDEmacsKeyEvents.emacs_utils_keymap.mode_switch_mode_specific,
+                "to": [
+                    Utils.set_emacs_mode_mode_specific,
+                ],
+                **Utils.clear_emacs_mode_after_timeout,
+            },  # type: ignore
+        ],
+    ),
+    Modification(
+        description="Emacs Mode: Special case of switching from mode_specific -> general_extend",
+        manipulators=[
+            {
+                "type": "basic",
+                "conditions": [
+                    Utils.is_emacs_mode_mode_specific,
+                ],
+                "from": STDEmacsKeyEvents.emacs_utils_keymap.mode_switch_general_extend,
+                "to": [
+                    Utils.set_emacs_mode_general_extend,
+                ],
+                **Utils.clear_emacs_mode_after_timeout,
+            },  # type: ignore
+        ],
+    ),
+    Modification(
+        description="Emacs Mode: Clear on any non valid emacs mode key (emacs_mode_general_extend)",
+        manipulators=[
+            {
+                "type": "basic",
+                "conditions": [
+                    Utils.is_emacs_mode_general_extend,
+                ],
+                "from": {
+                    "any": "key_code",  # type: ignore
+                    "modifiers": {
+                        "optional": [
+                            "any",
+                        ]
+                    },
+                },
+                "to": [
+                    Utils.clear_emacs_mode,
+                ],
+            },
+        ],
+    ),
+    Modification(
+        description="Emacs Mode: Clear on any non valid emacs mode key (emacs_mode_specific)",
+        manipulators=[
+            {
+                "type": "basic",
+                "conditions": [
+                    Utils.is_emacs_mode_mode_specific,
+                ],
+                "from": {
+                    "any": "key_code",  # type: ignore
+                    "modifiers": {
+                        "optional": [
+                            "any",
+                        ]
+                    },
+                },
+                "to": [
+                    Utils.clear_emacs_mode,
+                ],
+            },
+        ],
+    ),
 ]
 
 with open("karabiner/karabiner.jsonc") as file:
