@@ -387,7 +387,7 @@
                                     "modifiers": {
                                         "mandatory": [
                                             "right_control",
-                                            "left_shift"
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -424,7 +424,7 @@
                                     "modifiers": {
                                         "mandatory": [
                                             "right_control",
-                                            "left_shift"
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -506,7 +506,7 @@
                                     "modifiers": {
                                         "mandatory": [
                                             "right_control",
-                                            "left_shift"
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -716,7 +716,7 @@
                                     "key_code": "x",
                                     "modifiers": {
                                         "mandatory": [
-                                            "right_command"
+                                            "command"
                                         ]
                                     }
                                 },
@@ -1534,7 +1534,7 @@
                                     "modifiers": {
                                         "mandatory": [
                                             "right_control",
-                                            "left_shift"
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -1572,7 +1572,7 @@
                                     "modifiers": {
                                         "mandatory": [
                                             "right_control",
-                                            "left_shift"
+                                            "right_shift"
                                         ]
                                     }
                                 },
@@ -1903,7 +1903,7 @@
                         "product_id": 45081,
                         "vendor_id": 1133
                     },
-                    "ignore": true,
+                    "ignore": false,
                     "manipulate_caps_lock_led": true,
                     "simple_modifications": [],
                     "treat_as_built_in_keyboard": false
@@ -1985,7 +1985,18 @@
                 "delay_milliseconds_before_open_device": 1000
             },
             "selected": true,
-            "simple_modifications": [],
+            "simple_modifications": [
+                {
+                    "from": {
+                        "key_code": "caps_lock"
+                    },
+                    "to": [
+                        {
+                            "key_code": "right_control"
+                        }
+                    ]
+                }
+            ],
             "virtual_hid_keyboard": {
                 "country_code": 0,
                 "indicate_sticky_modifier_keys_state": true,

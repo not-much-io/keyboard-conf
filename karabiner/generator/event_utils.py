@@ -82,15 +82,15 @@ def translate_symbols(
     # TODO: It seems my keyboard specifically pressed left shift for some reason.
     #       Right shift just would not work here.
     if key == "<":
-        return "comma", MODIFIER_KEYS.left_shift
+        return "comma", MODIFIER_KEYS.right_shift
     if key == ">":
-        return "period", MODIFIER_KEYS.left_shift
+        return "period", MODIFIER_KEYS.right_shift
     if key == "-":
         return "hyphen", None
     if key == "_":
-        return "hyphen", MODIFIER_KEYS.left_shift
+        return "hyphen", MODIFIER_KEYS.right_shift
     if key == ":":
-        return "semicolon", MODIFIER_KEYS.left_shift
+        return "semicolon", MODIFIER_KEYS.right_shift    
     if key == ";":
         return "semicolon", None
     if key == " ":

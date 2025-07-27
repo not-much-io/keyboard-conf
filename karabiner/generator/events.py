@@ -140,7 +140,7 @@ STDMacOSKeyEvents = OsLevelKeymap[ProducibleKeyEvent](
         {
             "key_code": SPECIFIC_KEYS.left,
             "modifiers": [
-                MODIFIER_KEYS.command,
+                MODIFIER_KEYS.right_command,
             ],
         }
     ),
@@ -148,7 +148,7 @@ STDMacOSKeyEvents = OsLevelKeymap[ProducibleKeyEvent](
         {
             "key_code": SPECIFIC_KEYS.right,
             "modifiers": [
-                MODIFIER_KEYS.command,
+                MODIFIER_KEYS.right_command,
             ],
         }
     ),
@@ -156,7 +156,7 @@ STDMacOSKeyEvents = OsLevelKeymap[ProducibleKeyEvent](
         {
             "key_code": SPECIFIC_KEYS.up,
             "modifiers": [
-                MODIFIER_KEYS.command,
+                MODIFIER_KEYS.right_command,
             ],
         }
     ),
@@ -164,34 +164,34 @@ STDMacOSKeyEvents = OsLevelKeymap[ProducibleKeyEvent](
         {
             "key_code": SPECIFIC_KEYS.down,
             "modifiers": [
-                MODIFIER_KEYS.command,
+                MODIFIER_KEYS.right_command,
             ],
         }
     ),
     copy=ProducibleKeyEvent(
         {
             "key_code": "c",
-            "modifiers": [MODIFIER_KEYS.command],
+            "modifiers": [MODIFIER_KEYS.right_command],
         }
     ),
     paste=ProducibleKeyEvent(
         {
             "key_code": "v",
-            "modifiers": [MODIFIER_KEYS.command],
+            "modifiers": [MODIFIER_KEYS.right_command],
         }
     ),
     undo=ProducibleKeyEvent(
         {
             "key_code": "z",
-            "modifiers": [MODIFIER_KEYS.command],
+            "modifiers": [MODIFIER_KEYS.right_command],
         }
     ),
     redo=ProducibleKeyEvent(
         {
             "key_code": "z",
             "modifiers": [
-                MODIFIER_KEYS.command,
-                MODIFIER_KEYS.shift,
+                MODIFIER_KEYS.right_command,
+                MODIFIER_KEYS.right_shift,
             ],
         }
     ),
@@ -220,26 +220,26 @@ STDMacOSKeyEvents = OsLevelKeymap[ProducibleKeyEvent](
     word_forward=ProducibleKeyEvent(
         {
             "key_code": SPECIFIC_KEYS.right,
-            "modifiers": [MODIFIER_KEYS.option],
+            "modifiers": [MODIFIER_KEYS.right_option],
         }
     ),
     word_backward=ProducibleKeyEvent(
         {
             "key_code": SPECIFIC_KEYS.left,
-            "modifiers": [MODIFIER_KEYS.option],
+            "modifiers": [MODIFIER_KEYS.right_option],
         }
     ),
     delete_word_backward=ProducibleKeyEvent(
         {
             "key_code": SPECIFIC_KEYS.backspace,
-            "modifiers": [MODIFIER_KEYS.option],
+            "modifiers": [MODIFIER_KEYS.right_option],
         }
     ),
     delete_word_forward=ProducibleKeyEvent(
         {
             "key_code": SPECIFIC_KEYS.delete,
             "modifiers": [
-                MODIFIER_KEYS.option,
+                MODIFIER_KEYS.right_option,
                 MODIFIER_KEYS.fn,
             ],
         }
@@ -247,13 +247,13 @@ STDMacOSKeyEvents = OsLevelKeymap[ProducibleKeyEvent](
     select_all=ProducibleKeyEvent(
         {
             "key_code": "a",
-            "modifiers": [MODIFIER_KEYS.command],
+            "modifiers": [MODIFIER_KEYS.right_command],
         }
     ),
     save=ProducibleKeyEvent(
         {
             "key_code": "s",
-            "modifiers": [MODIFIER_KEYS.command],
+            "modifiers": [MODIFIER_KEYS.right_command],
         }
     ),
 )
@@ -270,7 +270,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "p",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -278,7 +278,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "n",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -286,7 +286,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "b",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -294,7 +294,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "f",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -302,7 +302,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "f",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.command]
+                    "mandatory": [MODIFIER_KEYS.right_command]
                 },
             }
         ),
@@ -310,7 +310,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "b",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.command]
+                    "mandatory": [MODIFIER_KEYS.right_command]
                 },
             }
         ),
@@ -318,7 +318,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "a",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -326,7 +326,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "e",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -334,7 +334,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "v",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.command]
+                    "mandatory": [MODIFIER_KEYS.right_command]
                 },
             }
         ),
@@ -343,7 +343,7 @@ STDEmacsKeyEvents = EmacsKeymap(
                 "key_code": "v",
                 "modifiers": {
                     "mandatory": [
-                        MODIFIER_KEYS.control,
+                        MODIFIER_KEYS.right_control,
                     ]
                 },
             }
@@ -352,7 +352,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "<",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -360,7 +360,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": ">",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -369,7 +369,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "w",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.command]
+                    "mandatory": [MODIFIER_KEYS.right_command]
                 },
             }
         ),
@@ -377,7 +377,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "y",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -385,7 +385,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "_",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -394,7 +394,7 @@ STDEmacsKeyEvents = EmacsKeymap(
                 "key_code": "-",
                 "modifiers": {
                     "mandatory": [
-                        MODIFIER_KEYS.control,
+                        MODIFIER_KEYS.right_control,
                     ]
                 },
             }
@@ -403,7 +403,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "d",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -411,7 +411,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": SPECIFIC_KEYS.backspace,
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.command]
+                    "mandatory": [MODIFIER_KEYS.right_command]
                 },
             }
         ),
@@ -419,7 +419,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "d",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.command]
+                    "mandatory": [MODIFIER_KEYS.right_command]
                 },
             }
         ),
@@ -427,7 +427,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "h",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -435,7 +435,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "g",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -443,7 +443,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "s",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -456,7 +456,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "s",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -467,7 +467,7 @@ STDEmacsKeyEvents = EmacsKeymap(
                 "key_code": "x",
                 "modifiers": {
                     "mandatory": [
-                        MODIFIER_KEYS.command,
+                        MODIFIER_KEYS.either_command,
                     ]
                 },
             }
@@ -477,7 +477,7 @@ STDEmacsKeyEvents = EmacsKeymap(
                 "key_code": "c",
                 "modifiers": {
                     "mandatory": [
-                        MODIFIER_KEYS.control,
+                        MODIFIER_KEYS.right_control,
                     ]
                 },
             }
@@ -487,7 +487,7 @@ STDEmacsKeyEvents = EmacsKeymap(
                 "key_code": "f",
                 "modifiers": {
                     "mandatory": [
-                        MODIFIER_KEYS.control,
+                        MODIFIER_KEYS.right_control,
                     ]
                 },
             }
@@ -497,7 +497,7 @@ STDEmacsKeyEvents = EmacsKeymap(
                 "key_code": ".",
                 "modifiers": {
                     "mandatory": [
-                        MODIFIER_KEYS.control,
+                        MODIFIER_KEYS.right_control,
                     ]
                 },
             }
@@ -507,7 +507,7 @@ STDEmacsKeyEvents = EmacsKeymap(
                 "key_code": ",",
                 "modifiers": {
                     "mandatory": [
-                        MODIFIER_KEYS.control,
+                        MODIFIER_KEYS.right_control,
                     ]
                 },
             }
@@ -517,7 +517,7 @@ STDEmacsKeyEvents = EmacsKeymap(
                 "key_code": "f",
                 "modifiers": {
                     "mandatory": [
-                        MODIFIER_KEYS.control,
+                        MODIFIER_KEYS.right_control,
                     ]
                 },
             }
@@ -527,7 +527,7 @@ STDEmacsKeyEvents = EmacsKeymap(
                 "key_code": ".",
                 "modifiers": {
                     "mandatory": [
-                        MODIFIER_KEYS.control,
+                        MODIFIER_KEYS.right_control,
                     ]
                 },
             }
@@ -549,7 +549,7 @@ STDEmacsKeyEvents = EmacsKeymap(
                 "key_code": "s",
                 "modifiers": {
                     "mandatory": [
-                        MODIFIER_KEYS.control,
+                        MODIFIER_KEYS.right_control,
                     ]
                 },
             }
@@ -559,7 +559,7 @@ STDEmacsKeyEvents = EmacsKeymap(
                 "key_code": ";",
                 "modifiers": {
                     "mandatory": [
-                        MODIFIER_KEYS.command,
+                        MODIFIER_KEYS.right_command,
                     ]
                 },
             }
@@ -569,7 +569,7 @@ STDEmacsKeyEvents = EmacsKeymap(
                 "key_code": "t",
                 "modifiers": {
                     "mandatory": [
-                        MODIFIER_KEYS.control,
+                        MODIFIER_KEYS.right_control,
                     ]
                 },
             }
@@ -579,7 +579,7 @@ STDEmacsKeyEvents = EmacsKeymap(
                 "key_code": "m",
                 "modifiers": {
                     "mandatory": [
-                        MODIFIER_KEYS.control,
+                        MODIFIER_KEYS.right_control,
                     ]
                 },
             }
@@ -590,7 +590,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "x",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -598,7 +598,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "c",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -606,7 +606,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "spacebar",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -616,7 +616,7 @@ STDEmacsKeyEvents = EmacsKeymap(
             {
                 "key_code": "w",
                 "modifiers": {
-                    "mandatory": [MODIFIER_KEYS.control]
+                    "mandatory": [MODIFIER_KEYS.right_control]
                 },
             }
         ),
@@ -634,8 +634,8 @@ STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
         {
             "key_code": "p",
             "modifiers": [
-                MODIFIER_KEYS.command,
-                MODIFIER_KEYS.shift,
+                MODIFIER_KEYS.right_command,
+                MODIFIER_KEYS.right_shift,
             ],
         }
     ),
@@ -648,8 +648,8 @@ STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
         {
             "key_code": "f",
             "modifiers": [
-                MODIFIER_KEYS.option,
-                MODIFIER_KEYS.shift,
+                MODIFIER_KEYS.right_option,
+                MODIFIER_KEYS.right_shift,
             ],
         }
     ),
@@ -662,7 +662,7 @@ STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
         {
             "key_code": "-",
             "modifiers": [
-                MODIFIER_KEYS.control,
+                MODIFIER_KEYS.right_control,
             ],
         }
     ),
@@ -670,7 +670,7 @@ STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
         {
             "key_code": "p",
             "modifiers": [
-                MODIFIER_KEYS.command,
+                MODIFIER_KEYS.right_command,
             ],
         }
     ),
@@ -678,7 +678,7 @@ STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
         {
             "key_code": "t",
             "modifiers": [
-                MODIFIER_KEYS.command,
+                MODIFIER_KEYS.right_command,
             ],
         }
     ),
@@ -696,7 +696,7 @@ STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
         {
             "key_code": "/",
             "modifiers": [
-                MODIFIER_KEYS.command,
+                MODIFIER_KEYS.right_command,
             ],
         }
     ),
@@ -710,7 +710,7 @@ STDIdeKeyEvents = StdIdeKeymap[ProducibleKeyEvent](
             {
                 "key_code": "k",
                 "modifiers": [
-                    MODIFIER_KEYS.command,
+                    MODIFIER_KEYS.right_command,
                 ],
             }
         ),

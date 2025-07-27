@@ -18,12 +18,14 @@ class SPECIFIC_KEYS:
 class MODIFIER_KEYS:
     fn: Modifier = "fn"
 
-    # We use the right variants for all modifiers
-    # See below note about left variants usage
-    command: Modifier = "right_command"
-    control: Modifier = "right_control"
-    option: Modifier = "right_option"
-    shift: Modifier = "right_shift"
+    # TODO[20250727]: There is some inconsistencies with modifier keys on my
+    #                 moonlander and macbook keyboards?
+    #                 Likely only problem is the fact that the moonlander only produces
+    #                 one variant of the modifier keys and the current logic is somewhat depending on that?
+    either_command: Modifier = "command"
+    either_control: Modifier = "control"
+    either_option: Modifier = "option"
+    either_shift: Modifier = "shift"
 
     """
     Some keybinding we want to use are already used by MacOS.
@@ -45,6 +47,11 @@ class MODIFIER_KEYS:
 
     So these left variants of modifier keys should only ever be used in such cases.
     """
+    right_command: Modifier = "right_command"
+    right_control: Modifier = "right_control"
+    right_option: Modifier = "right_option"
+    right_shift: Modifier = "right_shift"
+
     left_command: Modifier = "left_command"
     left_control: Modifier = "left_control"
     left_option: Modifier = "left_option"
